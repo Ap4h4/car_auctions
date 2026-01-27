@@ -1,0 +1,11 @@
+# secrets
+secrets_folder/
+.env
+
+# logs
+logs/
+
+# python
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,204 @@
+auction_date,auction_city,auction_region,auction_item,starting_price,target_price,item_ts
+16.12.2025,Złotoryja,dolnośląskie,Samochody osobowe,525.0,700.0,2025-12-22 22:04:24
+16.12.2025,Gdańsk,pomorskie,Jeep Wrangler TJ 2000 4.0 benz+LPG manual  G9M2 1J4FAN9S2YP735522,75000.0,100000.0,2025-12-22 22:04:24
+17.12.2025,Konstantynów Łódzki,łódzkie,Samochody osobowe,9000.0,12000.0,2025-12-22 22:04:25
+22.12.2025,Zgierz,łódzkie,"TOYOTA AVENSIS, nr rej. EZG 21698, 2005, SB1EB56L50E018175 dpr. 20-10-2005",4500.0,6000.0,2025-12-22 22:04:26
+22.12.2025,Grodzisk Wielkopolski,wielkopolskie,"MAZDA 6, nr rej. PGO47155 VIN JMZGY198251198739 rok produkcji 2005 data nast. bad. 29.01.2023 00:00:00",1000.0,2000.0,2025-12-22 22:04:27
+22.12.2025,Wolbrom,małopolskie,"BMW X1 M pakiet, nr rej. KOLWR24, r.prod. 2015r.",23800.0,47600.0,2025-12-22 22:04:28
+22.12.2025,Mysłowice,śląskie,"Samochód osobowy Renault Megane, rok prod. 2002, 1.9 DCI, VF1BM0G0627630136, nr rej. KTA2844H, data pierwszej rejestracji: 2009-12-04, Brak kluczyków pojazdu",900.0,1800.0,2025-12-22 22:04:29
+22.12.2025,Wrocław,dolnośląskie,Samochody osobowe,25500.0,34000.0,2025-12-22 22:04:30
+22.12.2025,Różyca,łódzkie,"FIAT FREEMONT 2.0 MJ rok.2012, przebieg 200337km, diesel,kolor czarny,udział 1/2",7875.0,15750.0,2025-12-22 22:04:31
+22.12.2025,Grodzisk Wielkopolski,wielkopolskie,"Samochód osobowy HYUNDAI IX35, Rok prod: 2012, Rej: PGO10736, VIN: TMAJU81AADJ359641",22500.0,30000.0,2025-12-22 22:04:32
+22.12.2025,Lubsko,lubuskie,karoseria pojazdu KIA PRO CEED VIN: U5YH6G17GNL059601,300.0,400.0,2025-12-22 22:04:32
+22.12.2025,Grodzisko,opolskie,"Samochód osobowy BMW 118D    Rok produkcji: 2006 Rejestracja: OST41U4 Silnik: poj: 1995 cm3, moc: 90 KM, rodz. paliwa: OLEJ NAPĘDOWY VIN: WBAUG31090PU74787",14625.0,19500.0,2025-12-22 22:04:33
+23.12.2025,Krosno,podkarpackie,"RENAULT MEGANE SCENIC, RKR47120, VIN: VF1JM0J0H30241034, Data pierwszej rejestracji 2004-03-26",1875.0,2500.0,2025-12-22 22:04:34
+23.12.2025,Jedlicze,podkarpackie,"PEUGEOT BOXER, RKR17609, VIN: VF3232V4215747960, Data pierwszej rejestracji 1999-07-08",6000.0,8000.0,2025-12-22 22:04:34
+23.12.2025,Jedlicze,podkarpackie,"KIA PICANTO, RKR29543, VIN: KNABA24429T709728, Data pierwszej rejestracji 2009-05-07",6000.0,8000.0,2025-12-22 22:04:34
+23.12.2025,Ruda Śląska,śląskie,"OPEL ZAFIRA, 2007r. VIN: W0L0AHM757G103855",2250.0,3000.0,2025-12-22 22:04:35
+29.12.2025,Poznań,wielkopolskie,"OPEL ZAFIRA ,nr rej. PY11991, VIN W0LPE9EM5C2041571, rok produkcji 2012, data I rejestracji 23-01-2012",18675.0,24900.0,2025-12-22 22:04:36
+29.12.2025,Poznań,wielkopolskie,"OPEL VIVARO ,nr rej. PY30876, VIN W0LJ7CCA64V638450, rok produkcji 2004,data I rejestracji 9-06-2004",11250.0,15000.0,2025-12-22 22:04:36
+29.12.2025,Dobre,kujawsko-pomorskie,"MERCEDES-BENZ CLS 550    nr rej. CRANN71, VIN WDDLJ9BB8EA120780, rok produkcji 2014, coupe 4 drzwiowy, moc silnika 408KM, automatyczna skrzynia biegów, kolor czarny.",43350.0,57800.0,2025-12-22 22:04:37
+30.12.2025,Nowy Adamów,łódzkie,"MERCEDES-BENZ S 350 CDI, nr. rej. EZG35628, VIN: WDD2211221A294937, rok prod. 2009",26025.0,34700.0,2025-12-22 22:04:37
+30.12.2025,TARNÓW,małopolskie,PEUGEOT 407,3500.0,7000.0,2025-12-22 22:04:40
+30.12.2025,Kutno,łódzkie,"CITROEN XSARA PICASSO 1,6 I r.prod. 2005",1125.0,1500.0,2025-12-22 22:04:41
+30.12.2025,Kowalewo Pomorskie,kujawsko-pomorskie,FORD TRANSIT,9750.0,13000.0,2025-12-22 22:04:42
+30.12.2025,Kowalewo Pomorskie,kujawsko-pomorskie,SKODA FABIA 2013 r.,7500.0,10000.0,2025-12-22 22:04:42
+30.12.2025,Elzanowo,kujawsko-pomorskie,FIAT PANDA VAN,2250.0,3000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"RENAULT KANGOO, 2005",3000.0,4000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"VOLKSWAGEN LT, 1989",9750.0,13000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"VOLKSWAGEN LT, 1995",9750.0,13000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"FORD CIĘŻAROWY 7000, 1989",8250.0,11000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"PRZYCZEPA LAWETA BRENDERUP, 2005",3750.0,5000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"AUTOMAT SPAWALNICZY MIGATRONIC, 2020",18000.0,24000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"GIĘTKARKA DO RUR WRP65, 2022",17250.0,23000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"WIERTARKO-FREZARKA STOŁOWA, 2022",9000.0,12000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"REGAŁ WSPORNIKOWY, 2021",5250.0,7000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"REGAŁ PALETOWY, 2022",5625.0,7500.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,"GWINCIARKA RAMIĘ GWINTUJĄCE, 2022",4875.0,6500.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,NOŻYCE GILOTYNOWE 3500MM DO BLACHY,13500.0,18000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,WALEC 1300KG STEROWANY ZDALNIE,9750.0,13000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,NAGRZEWNICA OLEJOWA,5250.0,7000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,RUSZTOWANIE ALUMINIOWE ALTREX,3000.0,4000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,PRZYCZEPA KEMPINGOWA,3000.0,4000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,CENTRALA WENTYLACJI LENOX BALTIC,11250.0,15000.0,2025-12-22 22:04:43
+30.12.2025,Elzanowo,kujawsko-pomorskie,ELEKTRONARZĘDZIA MILWAUKEE,18000.0,24000.0,2025-12-22 22:04:43
+30.12.2025,Chełm,lubelskie,Volvo FL z przyczepą  - rok 2011 12 ton,75645.0,100860.0,2025-12-22 22:04:44
+30.12.2025,Chełm,lubelskie,"Fiat Ducato - do 3,5 tony, 3.0 disel, rok 2015",55350.0,73800.0,2025-12-22 22:04:44
+02.01.2026,Wronczyn,wielkopolskie,"AUDI S6 AVANT, nr rej. PZ220VL VIN WAUZZZ4FX7N091062 rok produkcji 2006 data nast. bad. 25-06-2023 00:00:00",8000.0,16000.0,2025-12-22 22:04:45
+07.01.2026,Toruń,kujawsko-pomorskie,Honda Accord Kombi,7125.0,9500.0,2025-12-22 22:04:46
+07.01.2026,Wrocław,dolnośląskie,Samochody osobowe,6150.0,12300.0,2025-12-22 22:04:47
+07.01.2026,Warszawa,mazowieckie,Samochody osobowe,18675.0,24900.0,2025-12-22 22:04:47
+07.01.2026,"Wiązowna, Majdan",mazowieckie,BMW MINI,4000.0,8000.0,2025-12-22 22:04:48
+08.01.2026,Mosina,wielkopolskie,Samochody osobowe,14250.0,19000.0,2025-12-22 22:04:49
+08.01.2026,Pieszków,dolnośląskie,"TOYOTA AVENSIS    nr rej. DLU61126, VIN SB1ED56L60E051762, rok produkcji 2007, uszkodzony, brak dow. rej.,  brak kluczyków .",3000.0,4000.0,2025-12-22 22:04:51
+08.01.2026,Ciecierzyce,lubuskie,"HONDA ACCORD, Dokument pojazdu: BAP4317230 Rok produkcji: 2003 Rejestracja: FKR611AU Silnik: poj: 2354 cm3, moc: 140 KW, rodz. paliwa: BENZYNA VIN: JHMCM27703C202481 Rodzaj: SAMOCHÓD OSOBOWY Marka: HONDA Model: ACCORD Data ważności OC: 2025-11-28 Data pierwsz. rejestracji: 2003-12-22",6750.0,9000.0,2025-12-22 22:04:52
+08.01.2026,Czarnoborsko,dolnośląskie,SKODA OCTAVIA 1.9 TDI nr rej. DGL34798  VIN TMBHG41U832787795,1500.0,2000.0,2025-12-22 22:04:53
+09.01.2026,GRODKÓW,opolskie,Samochody osobowe,7500.0,10000.0,2025-12-22 22:04:57
+09.01.2026,Wieluń,łódzkie,MITSUBISHI ASX,15000.0,20000.0,2025-12-22 22:04:58
+09.01.2026,WARSZAWA,mazowieckie,SKODA CITIGO,13125.0,17500.0,2025-12-22 22:04:58
+12.01.2026,Zawiercie,śląskie,AUDI Q7  nr rej. SBE59394 VIN WAUZZZ4L97D008779 rok produkcji 2006,30000.0,40000.0,2025-12-22 22:04:59
+12.01.2026,Zawiercie,śląskie,KIA SPORTAGE SL nr rej. SBE1436G VIN U5YPC813DCL174179 rok produkcji 2012,15000.0,20000.0,2025-12-22 22:04:59
+12.01.2026,Lniano,kujawsko-pomorskie,"KIA SORENTO, nr rej. CSWHX21, KNEJC521545301346, rok prod. 2004",6000.0,8000.0,2025-12-22 22:05:00
+12.01.2026,Kluczbork,opolskie,OPEL ASTRA 1.4 KAT,5000.0,10000.0,2025-12-22 22:05:00
+13.01.2026,Rybnik,śląskie,"SKODA OCTAVIA, 2007r. VIN:TMBBS61Z982039902",6500.0,13000.0,2025-12-22 22:05:01
+13.01.2026,Piła,wielkopolskie,MITSUBISHI COLT,4875.0,6500.0,2025-12-22 22:05:03
+13.01.2026,Rogoźno,wielkopolskie,KIA CERATO,2250.0,3000.0,2025-12-22 22:05:03
+13.01.2026,Kraków,małopolskie,"PEUGEOT 508, r. prod: 2015, nr rej. KRA778CC, VIN: VF38DRHH8FL019849, I rej. 12.05.2015",18000.0,24000.0,2025-12-22 22:05:04
+13.01.2026,Poznań,wielkopolskie,"samochód osobowy OPEL VECTRA, nr rej. PO7172S, VIN W0L0JBF1911021326, rok produkcji 2000",1000.0,2000.0,2025-12-22 22:05:05
+13.01.2026,Poznań,wielkopolskie,"samochód osobowy PEUGEOT 4007, nr rej. PO5S916, VIN VF3VV4HNHAZ806222, rok produkcji 2010",8800.0,17600.0,2025-12-22 22:05:05
+13.01.2026,Wasilków,podlaskie,CITROEN C3  nr rej. BIA1490A VIN VF7SCBHW6GW582615 rok produkcji 2016 data I rejestracji 2016-07-08,14250.0,19000.0,2025-12-22 22:05:06
+13.01.2026,Niepruszewo,wielkopolskie,"FIAT TALENTO, nr rej. PO3NF60, VIN ZFAFJL000K5113663, rok produkcji 2019",40725.0,54300.0,2025-12-22 22:05:06
+13.01.2026,Pólko,wielkopolskie,"Renault Trafic, 2.0 diesel, nr rej. PO4H96 , kolor czarny, rok produkcji 2008",13500.0,18000.0,2025-12-22 22:05:07
+14.01.2026,Poznań,wielkopolskie,"samochód osobowy: NISSAN MICRA, nr rej.: PZ212VA, nr VIN: SJNEAAK11U3251689, rok prod. 2000, poj. 998, kolor czarny",1125.0,1500.0,2025-12-22 22:05:08
+14.01.2026,Nisko,podkarpackie,"Samochód osobowy  BMW 520 D , rok prod. 2008, nr rej: SRC22N5, VIN: WBANX31050CW77848",17250.0,23000.0,2025-12-22 22:05:08
+14.01.2026,Gdańsk,pomorskie,HONDA CIVIC 5DR Executive,15825.0,21100.0,2025-12-22 22:05:09
+14.01.2026,Słupsk,pomorskie,Samochody osobowe,3750.0,5000.0,2025-12-22 22:05:10
+14.01.2026,Leszno,wielkopolskie,"samochód osobowy Peugeot 508 SW, nr rej. PL1669H, VIN VF38E5FV8DL038355, rok produkcji 2013",18750.0,25000.0,2025-12-22 22:05:12
+14.01.2026,Leszno,wielkopolskie,"motocykl BMW K 100 RT, nr rej. PL283M, VIN 0097136K100RT, rok produkcji 1988",3000.0,4000.0,2025-12-22 22:05:12
+14.01.2026,Oborniki,wielkopolskie,PEUGEOT 307,1875.0,2500.0,2025-12-22 22:05:13
+14.01.2026,Częstochowa,śląskie,"samochód osobowy BMW 320D 2.0 diesel, rok prod. 2008",11250.0,15000.0,2025-12-22 22:05:14
+14.01.2026,Łódź,łódzkie,Fiat Punto,375.0,500.0,2025-12-22 22:05:15
+15.01.2026,Bolesławiec,dolnośląskie,Samochody osobowe,38100.0,50800.0,2025-12-22 22:05:16
+15.01.2026,Ruda Śląska,śląskie,OPEL ZAFIRA,5000.0,10000.0,2025-12-22 22:05:16
+15.01.2026,Strzebielino Osiedle,pomorskie,TOYOTA COROLLA I rej. 26.01.2007 przebieg. ok. 450 tys.,6000.0,8000.0,2025-12-22 22:05:17
+15.01.2026,Strzebielino Osiedle,pomorskie,AUDI A6 przebieg ok. 350 tys. km,9750.0,13000.0,2025-12-22 22:05:17
+15.01.2026,Rymanów,podkarpackie,PEUGEOT 3008 nr rej. RZ8113X; VIN VF30URHE89S251797; Data pierwszej rejestracji 2009-12-29,11250.0,15000.0,2025-12-22 22:05:18
+15.01.2026,Morownica,wielkopolskie,SEAT ALHAMBRA,5250.0,7000.0,2025-12-22 22:05:18
+15.01.2026,Namysłów,opolskie,"RENAULT MASTER ciężarowy, poj. silnika 2463 cm",7500.0,10000.0,2025-12-22 22:05:19
+15.01.2026,Namysłów,opolskie,"RENAULT LAGUNA hatchback 2,0",3000.0,4000.0,2025-12-22 22:05:19
+15.01.2026,Namysłów,opolskie,CITROEN C5 kombi,750.0,1000.0,2025-12-22 22:05:19
+15.01.2026,Żyrardów,mazowieckie,"BMW 430 I Coupe model 430 nr rej. WZY39091, VIN WBA4U7C33H5H20248,  rok produkcji 2017",44325.0,59100.0,2025-12-22 22:05:20
+15.01.2026,Namysłów,opolskie,"PEUGEOT 307 SW, poj. 1997 cm pojazd sprawny",1500.0,2000.0,2025-12-22 22:05:21
+15.01.2026,Mikołów,śląskie,"Samochód osobowy Porsche Cayenne Turbo, rocznik 2010, nr rej. SMI10993, nr VIN WP1ZZZ92ZBLA83481",30550.0,61100.0,2025-12-22 22:05:22
+15.01.2026,GARAŻE,opolskie,OPEL ASTRA hatchback uszkodzona powłoka lakierniczo-blacharska,3750.0,5000.0,2025-12-22 22:05:23
+15.01.2026,Annopole,wielkopolskie,"KIA SPORTAGE, nr rej. PSR3866C, VIN U6YJE55528L003187, rok produkcji 2008, przebieg 261 tys. km",10000.0,20000.0,2025-12-22 22:05:23
+16.01.2026,Częstochowa,śląskie,AUDI A3 SPORTBACK nr rej. SC1644Y VIN WAUZZZ8PXCA107071 rok produkcji 2012 - wersja z kierownicą po prawej stronie.,5450.0,10900.0,2025-12-22 22:05:24
+16.01.2026,Lębork,pomorskie,"PEUGEOT 308 kombi, 1.6HDI, prod. 2008 rok",3375.0,4500.0,2025-12-22 22:05:25
+16.01.2026,Jabłońskie,warmińsko-mazurskie,KIA SPORTAGE ROK 2014 VIN U5YPC81BDEL542746 NR REJ NGO47A7,18750.0,25000.0,2025-12-22 22:05:26
+19.01.2026,Częstochowa,śląskie,FORD MONDEO ( udział 1/2) nr rej. SC683CN VIN WF0GXXGBBGBJ73598 rok produkcji 2011,6750.0,9000.0,2025-12-22 22:05:28
+19.01.2026,Duszniki,wielkopolskie,AUDI A3,1125.0,1500.0,2025-12-22 22:05:28
+20.01.2026,Brudzowice,śląskie,OPEL CORSA-C-VAN nr rej. SBE65193 VIN W0L0XCF0864210748 rok produkcji 2006,300.0,600.0,2025-12-22 22:05:29
+20.01.2026,Brudzowice,śląskie,RENAULT KANGOO nr rej. SBE67383 VIN VF1FC07AF29567860 rok produkcji 2003,300.0,600.0,2025-12-22 22:05:29
+20.01.2026,Brudzowice,śląskie,AUDI A6 nr rej. SBE72073 VIN WAUZZZ4BZXN131903 rok produkcji 1999,500.0,1000.0,2025-12-22 22:05:29
+20.01.2026,Brudzowice,śląskie,ZIPP JN50QT-6C nr rej. SBEHF48 VIN LZRB0F2A2D1312063 rok produkcji 2013,500.0,1000.0,2025-12-22 22:05:29
+20.01.2026,Brudzowice,śląskie,ROUTER nr rej. SBEHN63 VIN LJLTCBH7XB3A80500 rok produkcji 2010,250.0,500.0,2025-12-22 22:05:29
+20.01.2026,Gorzów Wlkp.,lubuskie,VOLKSWAGEN GOLF,2250.0,4500.0,2025-12-22 22:05:30
+20.01.2026,Wolbrom,małopolskie,"Audi A3 r.prod. 2002, nr rej. KMY26703, VIN: WAUZZZ8L02A053601",4125.0,5500.0,2025-12-22 22:05:31
+20.01.2026,Gębice,kujawsko-pomorskie,samochód osobowy AUDI A4 r.pr. 2002 PKS49217 uszkodzony układ hamulcowy,2250.0,3000.0,2025-12-22 22:05:32
+21.01.2026,Gryfino,zachodniopomorskie,OPEL INSIGNIA rok prod 2011 2.0 cdti 130,10850.0,21700.0,2025-12-22 22:05:33
+21.01.2026,Gdańsk,pomorskie,"FIAT STILO GD263SR 2003 ZFA19200000287223  nr rej. GD263SR,  data I rej. 28.11.2003",1125.0,1500.0,2025-12-22 22:05:34
+21.01.2026,Gdańsk,pomorskie,DODGE DURANGO 5.7 benz+ LPG GD210VG 2004 1D4HB48D94F213255  data I rej. 01.01.2004,11250.0,15000.0,2025-12-22 22:05:34
+21.01.2026,Kędzierzyn-Koźle,opolskie,VOLKSWAGEN GOLF,6000.0,8000.0,2025-12-22 22:05:34
+21.01.2026,Bydgoszcz,kujawsko-pomorskie,OPEL CORSA-C 1.3D,1875.0,2500.0,2025-12-22 22:05:35
+21.01.2026,Gdańsk,pomorskie,VOLKSWAGEN BORA WVWZZZ1JZXW436119 1998 GA4017S data I rej 29.01.2009,2250.0,3000.0,2025-12-22 22:05:37
+21.01.2026,Nakło nad Notecią,kujawsko-pomorskie,SAMOCHÓD OSOBOWY KIA SORENTO,42525.0,56700.0,2025-12-22 22:05:38
+21.01.2026,Radzymin,mazowieckie,Motocykl marki SAM 650,1200.0,1600.0,2025-12-22 22:05:39
+21.01.2026,Radzymin,mazowieckie,motocykl marki Hyosung Aąuila,1200.0,1600.0,2025-12-22 22:05:39
+21.01.2026,Radzymin,mazowieckie,samochód osobowy marki Hyundai Grandeur,6750.0,9000.0,2025-12-22 22:05:39
+21.01.2026,Radzymin,mazowieckie,samochód osobowy marki Polski Fiat 126P,2250.0,3000.0,2025-12-22 22:05:39
+21.01.2026,Radzymin,mazowieckie,przyczepka lekka 2PC - ŚWIDNIK,600.0,800.0,2025-12-22 22:05:39
+21.01.2026,Gdańsk,pomorskie,ALFA ROMEO 159 2006 GST56152 ZAR93900007067914 data I rej: 30.10.2006,3750.0,5000.0,2025-12-22 22:05:39
+21.01.2026,Szczecin,zachodniopomorskie,Samochody osobowe,64950.0,86600.0,2025-12-22 22:05:40
+22.01.2026,Rzeszotary,dolnośląskie,CHEVROLET AVEO DL2165F VIN KL1SF48DJ8B203939 r. 2008,3825.0,5100.0,2025-12-22 22:05:41
+22.01.2026,Tczew,pomorskie,"samochód osobowy Skoda Octavia 1,9 TDI 2005 rok, nr rejestracyjny GTC13282",5000.0,10000.0,2025-12-22 22:05:42
+22.01.2026,Opole,opolskie,ZMIANA TERMINU LICYTACJI -TOYOTA AVENSIS,12300.0,16400.0,2025-12-22 22:05:43
+22.01.2026,Opole,opolskie,MERCEDES-BENZ ML 350 4MATIC,46050.0,61400.0,2025-12-22 22:05:43
+22.01.2026,Opole,opolskie,JEEP GRAND CHEROKEE,46800.0,62400.0,2025-12-22 22:05:43
+22.01.2026,Kraków,małopolskie,"Samochód osobowy marki RENAULT model MEGANE 1.5 dCI nr VIN: VF1BZ1G0645212849 rok produkcji 2011, hatchback, 5-drzwi pojemność silnika: 1461 cm3/81 kW skrzynia biegów: manualna rodzaj paliwa: olej napędowy przebieg: 197 059 km BRAK DOWODU REJESTRACYJNEGO",5000.0,10000.0,2025-12-22 22:05:44
+22.01.2026,Gliwice,śląskie,"VOLKSWAGEN PASSAT, nr rej. SG720CC, VIN WVWZZZ3CZ6E220587, rok produkcji 2006",6375.0,8500.0,2025-12-22 22:05:45
+22.01.2026,Łubianka,kujawsko-pomorskie,"Seat Leon,nr rej. CTR 23874 VIN rok produkcji 1999",3000.0,4000.0,2025-12-22 22:05:45
+23.01.2026,Roztworów,mazowieckie,"Dodge Journey, Rok produkcji: 2009, VIN: 3D4GGC7Y59T535206",17250.0,23000.0,2025-12-22 22:05:47
+23.01.2026,Broniszew,mazowieckie,"Rodzaj: CIĄGNIK ROLNICZY (operat biegłego do wglądu w kancelarii) Marka: NEW HOLLAND Model: T4.65V MR11 Rok produkcji: 2016 Rejestracja: WBR88RU Silnik: poj: 3200 cm3, moc: 48 KM, rodz. paliwa: OLEJ NAPĘDOWY VIN: ZGJE10383 Data pierwsz. rejestracji: 2017-08-25 Brak informacji o ważnym badaniu technicznym",80475.0,107300.0,2025-12-22 22:05:48
+23.01.2026,Broniszew,mazowieckie,"Rodzaj: SAMOCHÓD SPECJALNY (operat biegłego do wglądu w kancelarii) Marka: DAF Model: XF 105.460 Rok produkcji: 2013 Rejestracja: WBR6H49 Silnik: poj: 12902 cm3, moc: 340 KM, rodz. paliwa: OLEJ NAPĘDOWY VIN: XLRAS47MS0E989044 Data ważności OC: 2026-08-31 Data pierwsz. rejestracji: 2013-09-02",60331.0,80442.0,2025-12-22 22:05:48
+23.01.2026,Broniszew,mazowieckie,"Rodzaj: SAMOCHÓD CIĘŻAROWY Marka: VOLKSWAGEN Model: LT35 Rok produkcji: 2004 Rejestracja: WBR72TP Silnik: poj: 2461 cm3, moc: 80 KM, rodz. paliwa: OLEJ NAPĘDOWY VIN: WV1ZZZ2DZ4H020994 Data ważności OC: 2026-04-13",7500.0,10000.0,2025-12-22 22:05:48
+23.01.2026,Broniszew,mazowieckie,"Rodzaj: SAMOCHÓD OSOBOWY Marka: VOLKSWAGEN Model: CARAVELLE 2.5 TDI Rok produkcji: 1997 Rejestracja: WBR92UE Silnik: poj: 2461 cm3, moc: 75 KM, rodz. paliwa: OLEJ NAPĘDOWY VIN: WV2ZZZ70ZWH079573 Data ważności OC: 2026-06-15 Data pierwsz. rejestracji: 1997-11-14",7500.0,10000.0,2025-12-22 22:05:48
+27.01.2026,Kolonia Borek,śląskie,"BMW 120I przebieg 308 tys.km, nr rej. SC209EF, rok produkcji 2006",6000.0,8000.0,2025-12-22 22:05:48
+27.01.2026,Wrocław,dolnośląskie,Samochody osobowe,5250.0,7000.0,2025-12-22 22:05:49
+27.01.2026,Wrocław,dolnośląskie,Samochody osobowe,2625.0,3500.0,2025-12-22 22:05:50
+27.01.2026,Tomaszowice,małopolskie,RENAULT TWINGO 1.2KAT (brak kluczyków i dokumentów),150.0,200.0,2025-12-22 22:05:51
+28.01.2026,Konstantynów Łódzki,łódzkie,"BMW 330 D, nr rej. EPIVN46, rok produkcji 2002 r., VIN: WBAER91010KG81238,  14.07.2022 r., - data pierwszej rejestracji pojazdu na terytorium Rzeczypospolitej Polskiej, data ważności OC 2026-02-09, prawdopodobnie uszkodzona pompa wysokiego ciśnienia.",6750.0,13500.0,2025-12-22 22:05:51
+28.01.2026,Kościan,wielkopolskie,Samochód osobowy BMW 320 rok 1999 Rej: PKARV22 VIN: WBAAM11070JM43721,2250.0,3000.0,2025-12-22 22:05:52
+28.01.2026,Sosnowiec,śląskie,Samochody osobowe,13500.0,18000.0,2025-12-22 22:05:53
+28.01.2026,Płoszów,łódzkie,"CHEVROLET CAPTIVA, rok. produkcji 2008, ERA86T9,nr vin KL1CG26RJ8B211589",10000.0,20000.0,2025-12-22 22:05:54
+28.01.2026,Płoszów,łódzkie,"OPEL
+ MOVANO, rok produkcji 2002, ERA42XL nr vin VN1F9CCL523928934",7500.0,15000.0,2025-12-22 22:05:54
+28.01.2026,Płoszów,łódzkie,"WÓZEK WIDŁOWY TOYOTA 6FGF25, rok produkcji 1998, nr zew. 406FGF-25-10429",15000.0,30000.0,2025-12-22 22:05:54
+28.01.2026,Stalowa Wola,podkarpackie,"Opel Insignia, 2009 r., 2.0 118 kw",12750.0,17000.0,2025-12-22 22:05:54
+28.01.2026,Kolonia Giżyce,lubelskie,"Samochód osobowy Mini, Mini",11250.0,15000.0,2025-12-22 22:05:55
+28.01.2026,Tuszów,lubelskie,Samochody osobowe,3000.0,4000.0,2025-12-22 22:05:56
+28.01.2026,Jaworowa,mazowieckie,samochód osobowy SKODA SUPERB kombi,47325.0,63100.0,2025-12-22 22:05:57
+28.01.2026,Bydlin,małopolskie,Samochody osobowe,7000.0,14000.0,2025-12-22 22:05:58
+29.01.2026,Kraków,małopolskie,"samochód osobowy; marka: MERCEDES-BENZ; model: 500 S(W220); numer rejestracyjny KR4X304; nr VIN: WDB2200751A089359; dostępne dokumenty: dowód rejestracyjny; rodzaj nadwozia: sedan; kolor nadwozia: odcień fioletu; pochodzenie: rynek wtórny zagraniczny; rok produkcji: 1999; data rejestracji: 01-01-2000 ( w kraju 31.01.2017); aktualność badań technicznych: tak; pojemność silnika/moc: 4966 cm3 225kW; skrzynia biegów: automatyczna ( 5-stopniowa); rodzaj paliwa: etylina; inne wyposażenie: tapicerka skórzana, felgi alu, szyberdach, zawieszenie pneumatyczne; wskazanie licznika: brak możliwości odczytu ze względu na niesprawną instalację elektryczną (prawdopodobnie rozładowany akumulator), na kontrolce oleju na datę 16.10.2024 r. widnieje przebieg 289 415 km; ilość właścicieli: brak danych; sprawność techniczna: nie- instalacja elektryczna niesprawna, prawdopodobnie rozładowany akumulator; ogumienie : w stanie średnim; powłoki lakiernicze: stan dobry - do napraw; karoseria : stan dobry- do napraw; stwierdzone usterki: niewielkie zarysowania, otarcia i obicia powłoki lakierniczej; silne wykwity korozji na klapie bagażnika i okolicach , na błotnikach, pęknięty fragment plastikowej obudowy fotela.",5300.0,10600.0,2025-12-22 22:05:58
+29.01.2026,Wrocław,dolnośląskie,"MERCEDES-BENZ E 200 KOMPRESSOR 2009, rej. ONY06836 , vin: WDB2112411B443728 , 1. rej 2009-04-24",18750.0,25000.0,2025-12-22 22:06:00
+29.01.2026,Rumianek,wielkopolskie,"BMW 520D kombi nr rej. PZ5H893, VIN WBA5L310X0G484972, rok produkcji 2016, data nast. bad.: 07.07.2026, kolor: czarny, przebieg: 227 925 km (stan na 02.10.2025)",42825.0,57100.0,2025-12-22 22:06:00
+02.02.2026,Nisko,podkarpackie,"AUDI A4 1.9 TDI, rok prod. 2002 VIN: WAUZZZ8E83A010580",3000.0,4000.0,2025-12-22 22:06:01
+03.02.2026,Olsztyn,warmińsko-mazurskie,"AUDI Q3, TDI MR 11 E5 8U, nr rej. NO5291Y, VIN WAUZZZ8UXDR080530, rok produkcji: 2013",30825.0,41100.0,2025-12-22 22:06:02
+03.02.2026,Olsztyn,warmińsko-mazurskie,"VOLKSWAGEN TOURAN, GP2 1.6 TDI MR 11 E5 nr rej. NO189AK, VIN WVGZZZ1TZCW028439, rok produkcji: 2011",15825.0,21100.0,2025-12-22 22:06:02
+03.02.2026,Toruń,kujawsko-pomorskie,"Samochody osobowe - samochód osobowy Volkswagen Touran rok produkcji 2005 kolor szary/srebrny nr rej. CT78585, VIN WVGZZZ1TZ5W125433",5000.0,10000.0,2025-12-22 22:06:03
+04.02.2026,Gdańsk,pomorskie,"PORSCHE MACAN - samochód kombi; VIN WP1ZZZ95ZHLB09465, przebieg: 219428  km; nr rej. G0BOSKA",58200.0,116400.0,2025-12-22 22:06:03
+09.02.2026,Olszanka,podlaskie,VOLKSWAGEN PASSAT,3375.0,4500.0,2025-12-22 22:06:04
+11.02.2026,Nisko,podkarpackie,"Samochód osobowy BMW 520, rok prod. 1983 nr rej: KR2EC65 VIN: WBADK5100D9177881",3750.0,5000.0,2025-12-22 22:06:05
+11.02.2026,Nisko,podkarpackie,"Samochód ciężarowy KIA K2500- NS, rok prod. 2004, nr rej: RSTGA02 VIN: KNESE01325K029978",2250.0,3000.0,2025-12-22 22:06:05
+11.02.2026,Łowicz,łódzkie,"samochód osobowy AUDI A6 2,0 TDI kolor srebrny, nr rej. ELC01972 rb. 2006,",4500.0,6000.0,2025-12-22 22:06:06
+11.02.2026,Rybki,pomorskie,"Samochód Renault Master, rok prod. 2014,",13500.0,18000.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Samochód Škoda Fabia, rok prod. 2011",3750.0,5000.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Samochód Peugeot Bipper, rok prod. 2008,",3750.0,5000.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Samochód Peugeot Partner, rok prod. 2012",4500.0,6000.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Przecinarka taczowa dwugłowicowa Murat Typ-403, prod. 2007",44955.0,59940.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Zgrzewarka dwugłowicowa Murat KC-258, prod. 2007",27975.0,37300.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Wózek jezdniowy podnośnikowy HANGHA CPQD25N-RW22-Y, prod. 2018 (z ważnymi badaniami UDT)",36825.0,49100.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Wykrojniki pneumatyczne do profili okiennych,2197.0,2930.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Piła-przecinarka jednogłowicowa Barracuda-El, rok prod. 2022, z wyposażeniem",22882.0,30510.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Stół kontrolno-pomiarowy (do kontroli i szklenia okien),16275.0,21700.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Kontener socjalny aluminiowy, przeszklony, z drzwiami wejściowymi",9322.0,12430.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Drzwi wewnętrzne aluminiowe / aluminiowo- szklane o odporności ogniowej EI 30,3322.0,4430.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Zbiornik powietrza z agregatem sprężarkowym WAN, prod. 1996",1410.0,1880.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Kompresor – sprężarka śrubowa AIRPOL,5175.0,6900.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Zaciskarka FOM BAIHA, prod. 2000",7350.0,9800.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Frezarko-kopiarka PERTICI UNIVER FC106,8100.0,10800.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Frezarka do odwodnień PREZ-MET, prod. 1998",3975.0,5300.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Czyszczarka do naroży URBAN SV280, prod. 2005",9337.0,12450.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Frezarka do słupka PREZ-MET, prod. 1998",3000.0,4000.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Wiertarka kolumnowa TOPTOOL SE 380V,780.0,1040.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Piła tarczowa do cięcia listew ST 48/PCV,690.0,920.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Piła ukośnica DeWalt DWS 780 wraz ze stołem,1817.0,2423.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Frezarka RINALDI LILLIPUT 9M, prod. 1995",4725.0,6300.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,Frezarko-kopiarka do profili PCV / ALU (ST.28/9L),8925.0,11900.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Frezarko-obrabiarka górnowrzecionowa TIGER, prod. 2004",5475.0,7300.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Przecinarka przemysłowa – gilotyna hydrauliczna do blach, bez oznaczenia producenta",5550.0,7400.0,2025-12-22 22:06:07
+11.02.2026,Rybki,pomorskie,"Wiertarka stołowa ZREMB WS-151, prod. 1987",952.0,1270.0,2025-12-22 22:06:07
+12.02.2026,OLSZTYN,warmińsko-mazurskie,AUDI A4,6000.0,8000.0,2025-12-22 22:06:08
+12.02.2026,Warszawa,mazowieckie,Samochody osobowe,15000.0,20000.0,2025-12-22 22:06:09
+19.02.2026,Bytów,pomorskie,Samochód osobowy Volkswagen Golf GTI 2005r.,11650.0,23300.0,2025-12-22 22:06:09
+24.02.2026,KĘDZIERZYN-KOŹLE,opolskie,"Samochody osobowe: CHEVROLET CAPTIVA    nr rej. OK89968, VIN KL1CD26RJ7B144144, rok produkcji 2008, , przebieg: 260842 km,pojemność 1991 ccm, paliwo: diesel, moc 150 km, kolor: srebrny metalic",13500.0,18000.0,2025-12-22 22:06:10
+25.02.2026,Orneta,warmińsko-mazurskie,Samochód osobowy marki: VOLKSWAGEN TOURAN,4450.0,8900.0,2025-12-22 22:06:11
+25.02.2026,Orneta,warmińsko-mazurskie,Samochód osobowy marki: RENAULT MEGANE SCENIC,700.0,1400.0,2025-12-22 22:06:11
+25.02.2026,Flesberg,warmińsko-mazurskie,Samochód osobowy marki VOLKSWAGEN TRANSPORTER 1.9D,1125.0,1500.0,2025-12-22 22:06:12
+26.02.2026,OLSZTYN,warmińsko-mazurskie,KIA SPORTAGE,11250.0,15000.0,2025-12-22 22:06:12
+18.03.2026,Puck,pomorskie,CITROEN C3 r.2004,2000.0,4000.0,2025-12-22 22:06:14
+18.03.2026,Puck,pomorskie,"OTVC ""LG"" + PILOT (2015r)",300.0,600.0,2025-12-22 22:06:14
+18.03.2026,Puck,pomorskie,"ZESTAW KINA DOMOWEGO""PIONIER"" + PILOT + 3 KOLUMNY (2015r)",100.0,200.0,2025-12-22 22:06:14
+18.03.2026,Puck,pomorskie,"LAPTOP ""ASUS"" + ZASILACZ (2015r)",350.0,700.0,2025-12-22 22:06:14
+18.03.2026,Puck,pomorskie,"PRALKA AUTOMATYCZNA ""BOSCH"" (2014r)",300.0,600.0,2025-12-22 22:06:14
+18.03.2026,Puck,pomorskie,"LODÓWKA ""WHIRPOOL"" (2017r)",600.0,1200.0,2025-12-22 22:06:14
+18.03.2026,Puck,pomorskie,"ZMYWARKA ""WHIRPOOL""",300.0,600.0,2025-12-22 22:06:14
