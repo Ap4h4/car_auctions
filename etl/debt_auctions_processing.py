@@ -1,6 +1,6 @@
 import re 
 import pandas as pd
-from db_connectors.postgressql_connector import connect_to_db as get_car_brand_models,get_car_brand_model_ids
+from db_connectors.postgressql_connector import get_car_brand_models,get_car_brand_model_ids
 import logging
 import datetime
 
