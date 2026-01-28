@@ -176,8 +176,8 @@ def get_car_brand_model_ids(brand,model):
     con = connect_to_db()
     cur = con.cursor()
     logger.info("Getting ids for brand " + str(brand) + " and model " + str(model) + " from posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    sql = "SELECT t1.make_id,t1.model_id from car_models t1 inner join car_makes t2 on t1.make_id = t2.make_id where t2.make_name = %s and t1.model_name = %s"
-    cur.execute(sql,(brand,model))
+    sql = "SELECT DISTINCT t1.make_id,t2.model_id from car_makes t1 left join car_models t2 on t1.make_id = t2.make_id and t2.model_name = %s  where t1.make_name = %s;"
+    cur.execute(sql,(model,brand))
     car_ids = cur.fetchall()
     logger.info("IDs " + str(car_ids) + " for brand " + str(brand) + " and model " + str(model) + " from posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     return car_ids

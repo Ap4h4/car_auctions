@@ -59,6 +59,8 @@ def preparing_pg_auction_input_list(auctions_list):
     output_list =[]
     for i in auctions_list:
         brand = i[6] #brand
+        if brand is None:
+            continue
         models = get_car_brand_models(brand)
         model = auction_brand_model_enriched(i[0],models)
         id_list = get_car_brand_model_ids(brand,model)
@@ -69,5 +71,5 @@ def preparing_pg_auction_input_list(auctions_list):
             brand_id = None
             model_id = None
         output_list.append(i[:6] + [brand_id,model_id])
-    logger.info("Prepared list of " + len(output_list) + " auctions to be inserted into pg at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    logger.info("Prepared list of " + str(len(output_list)) + " auctions to be inserted into pg at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     return output_list
