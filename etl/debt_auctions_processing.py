@@ -9,13 +9,14 @@ logger = logging.getLogger(__name__)
 def normalize(text):
     return re.sub(r'\s+', ' ', text.lower())
 
-def auction_made_year_enriched(text: str) -> int | None:
+def auction_made_year_enriched(auction_title: str) -> int | None:
     """
     Docstring for auction_year_enriched
     
     :param auction_title: string
     :return: string
     """
+    auction_title = normalize(auction_title)
     MADE_YEAR_PATTERN = re.compile(
     r"""
     (?:
@@ -29,13 +30,44 @@ def auction_made_year_enriched(text: str) -> int | None:
     re.VERBOSE | re.IGNORECASE
     )
     
-    match = MADE_YEAR_PATTERN.search(text)
+    match = MADE_YEAR_PATTERN.search(auction_title)
     if not match:
         return None
     year = match.group(1) or match.group(2)
     return int(year)
     
-    #return re.search(r'\d{4}', auction_title).group()
+def auction_vin_enriched(auction_title: str) -> str | None:
+    auction_title = normalize(auction_title)
+    VIN_PATTERN = re.compile(
+    r"""
+    (?:VIN|nr\s+VIN|nr\s+nadw\.?)   # kontekst
+    [^\w]{0,10}                     # separator
+    ([A-HJ-NPR-Z0-9]{17})            # VIN
+    """,
+    re.VERBOSE | re.IGNORECASE
+    )
+    match = VIN_PATTERN.search(auction_title)
+    if not match:
+        return None
+    return match.group(1)
+
+def auction_plates_enriched(auction_title: str) -> str | None:
+    auction_title = normalize(auction_title)
+    PLATE_PATTERN = re.compile(
+    r"""
+    (?:nr\s*rej\.?|rejestracja)     # kontekst
+    [^\w]{0,10}                     # separator
+    ([A-Z0-9]{2,3}                  # region
+     (?:\s?[A-Z0-9]{2,5}))          # reszta
+    """,
+    re.VERBOSE | re.IGNORECASE
+    )
+    match = PLATE_PATTERN.search(auction_title)
+    if not match:
+        return None
+    plate = match.group(1)
+    plate = plate.replace(' ', '')
+    return plate
 
 def auction_brand_model_enriched(auction_title, brands):
     """
