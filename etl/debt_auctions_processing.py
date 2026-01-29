@@ -9,6 +9,34 @@ logger = logging.getLogger(__name__)
 def normalize(text):
     return re.sub(r'\s+', ' ', text.lower())
 
+def auction_made_year_enriched(text: str) -> int | None:
+    """
+    Docstring for auction_year_enriched
+    
+    :param auction_title: string
+    :return: string
+    """
+    MADE_YEAR_PATTERN = re.compile(
+    r"""
+    (?:
+        (?:rok|Rok|rb\.?|rok prod\.?|rok produkcji|prod\.?)  # słowa kluczowe
+        [^\d]{0,30}
+        (?<!\d)(19\d{2}|20[0-2]\d)(?!\d)
+        |
+        \b(?<!\d)(19\d{2}|20[0-2]\d)(?!\d)\s*r\.?\b
+    )
+    """,
+    re.VERBOSE | re.IGNORECASE
+    )
+    
+    match = MADE_YEAR_PATTERN.search(text)
+    if not match:
+        return None
+    year = match.group(1) or match.group(2)
+    return int(year)
+    
+    #return re.search(r'\d{4}', auction_title).group()
+
 def auction_brand_model_enriched(auction_title, brands):
     """
     Docstring for auction_brand_model_enriched
