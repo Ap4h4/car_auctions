@@ -51,6 +51,9 @@ def pg_insert_car_auctions(auctions):
         auction_url = auction[5]
         car_make_id = auction[6]
         car_model_id = auction[7]
+        vin = auction[8]
+        plate = auction[9]
+        made_year = auction[10]
         try:
             sql = """SELECT upsert_auction(%s::text,
         %s::date,
@@ -59,6 +62,9 @@ def pg_insert_car_auctions(auctions):
         %s::numeric,
         %s::text,
         %s::integer,
+        %s::integer,
+        %s::text,
+        %s::text,
         %s::integer)"""
             cursor.execute(sql,(
                 auction_title,
@@ -68,7 +74,10 @@ def pg_insert_car_auctions(auctions):
                 target_price,
                 auction_url,
                 car_make_id,
-                car_model_id
+                car_model_id,
+                vin,
+                plate,
+                made_year
             ))
         except Exception as e:
             connection.rollback()
