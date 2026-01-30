@@ -9,3 +9,6 @@ logs/
 __pycache__/
 *.pyc
 .venv/
+
+#dev
+dev_main.py

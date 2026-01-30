@@ -9,6 +9,68 @@ logger = logging.getLogger(__name__)
 def normalize(text):
     return re.sub(r'\s+', ' ', text.lower())
 
+def auction_made_year_enriched(auction_title: str) -> int | None:
+    """
+    Docstring for auction_year_enriched
+    
+    :param auction_title: string
+    :return: string
+    """
+    auction_title = normalize(auction_title)
+    MADE_YEAR_PATTERN = re.compile(
+    r"""
+    (?:
+        (?:rok|Rok|rb\.?|rok prod\.?|rok produkcji|prod\.?)  # słowa kluczowe
+        [^\d]{0,30}
+        (?<!\d)(19\d{2}|20[0-2]\d)(?!\d)
+        |
+        \b(?<!\d)(19\d{2}|20[0-2]\d)(?!\d)\s*r\.?\b
+    )
+    """,
+    re.VERBOSE | re.IGNORECASE
+    )
+    
+    match = MADE_YEAR_PATTERN.search(auction_title)
+    if not match:
+        return None
+    year = match.group(1) or match.group(2)
+    return int(year)
+    
+def auction_vin_enriched(auction_title: str) -> str | None:
+    auction_title = normalize(auction_title)
+    VIN_PATTERN = re.compile(
+    r"""
+    (?:VIN|nr\s+VIN|nr\s+nadw\.?)   # kontekst
+    [^\w]{0,10}                     # separator
+    ([A-HJ-NPR-Z0-9]{17})            # VIN
+    """,
+    re.VERBOSE | re.IGNORECASE
+    )
+    match = VIN_PATTERN.search(auction_title)
+    
+    if not match:
+        return None
+    vin_number = str(match.group(1))
+    return vin_number
+
+def auction_plates_enriched(auction_title: str) -> str | None:
+    auction_title = normalize(auction_title)
+    PLATE_PATTERN = re.compile(
+    r"""
+    (?:nr\s*rej\.?|rejestracja)     # kontekst
+    [^\w]{0,10}                     # separator
+    ([A-Z0-9]{2,3}                  # region
+     (?:\s?[A-Z0-9]{2,5}))          # reszta
+    """,
+    re.VERBOSE | re.IGNORECASE
+    )
+    match = PLATE_PATTERN.search(auction_title)
+    if not match:
+        return None
+    plate = match.group(1)
+    plate = plate.replace(' ', '')
+    return plate
+
 def auction_brand_model_enriched(auction_title, brands):
     """
     Docstring for auction_brand_model_enriched
@@ -50,6 +112,7 @@ def auction_brands_enriched_output_list(auctions_dict,brands):
         auction_target_price = auction[5]
         auction_url = auction[6]
         brand = auction_brand_model_enriched(auction_title, brands)
+        
 
         output_list.append([auction_title, auction_date, auction_city, auction_starting_price, auction_target_price, auction_url, brand])
     return output_list
@@ -58,18 +121,22 @@ def preparing_pg_auction_input_list(auctions_list):
     logger.info("Starting preparing auction list to be inserted into pg at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     output_list =[]
     for i in auctions_list:
+        auction_title = i[0]
         brand = i[6] #brand
         if brand is None:
             continue
         models = get_car_brand_models(brand)
         model = auction_brand_model_enriched(i[0],models)
         id_list = get_car_brand_model_ids(brand,model)
+        vin_number = auction_vin_enriched(auction_title)
+        plate_number = auction_plates_enriched(auction_title)
+        made_year = auction_made_year_enriched(auction_title)
         if len(id_list) > 0:    
             brand_id = id_list[0][0]
             model_id = id_list[0][1]
         else:
             brand_id = None
             model_id = None
-        output_list.append(i[:6] + [brand_id,model_id])
+        output_list.append(i[:6] + [brand_id,model_id,vin_number,plate_number,made_year])
     logger.info("Prepared list of " + str(len(output_list)) + " auctions to be inserted into pg at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     return output_list
