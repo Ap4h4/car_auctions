@@ -228,10 +228,107 @@ def get_raw_cars_brand_models(brand):
         )
         #returing empty dict to not intercept ETL pipeline
         return {}
+    
+"""
+Scrapping functions for OtoMoto same auctions as debt auctions
+"""
+def get_otomoto_raw_cars_auctions(brand, model, year):
+    """
+    Docstring for get_raw_cars_auctions:
+    Function gets raw data from OtoMoto for given brand, model and madeyear+-2 (optional)
+    
+    :param brand: Description
+    :param model: Description
+    :param year: Description
+    :return: total_count of all ads and list of tuples for each add: price, mileage, year
 
+    """
+    if year == None:
+        url = "https://www.otomoto.pl/osobowe/"+brand+"/"+model+""
+    else:
+        start_year = int(year) - 2
+        end_year = int(year) + 2
+        start_year = str(start_year)
+        end_year = str(end_year)
+        url = "https://www.otomoto.pl/osobowe/"+brand+"/"+model+"/od-"+str(year)+"?search%5Bfilter_float_year%3Ato%5D="+end_year+""
     
+    with sync_playwright() as p:
         
-    
+        browser = p.chromium.launch(headless=False)
+        page = browser.new_page()
+        page.goto(url, wait_until="networkidle")
+        if not page:
+            logger.error("Missing page - otomoto not rendered")
+        # cookies – MUSI być
+        page.get_by_role("button", name="Akceptuj").click()
+        
+        html = page.content()
+        if not html:
+            logger.error("Missing HTML - otomoto not rendered")
+        page.wait_for_timeout(3000)
+        browser.close()
+
+        soup = BeautifulSoup(html, "lxml")
+        #Total count of ads
+        total_count_p= soup.find("p", class_="efp1nuf2")
+        if not total_count_p:
+            logger.error("Missing <p> tag for total count - total count not collected")
+        else:
+            total_count = total_count_p.find("b") if total_count_p else None
+            total_count = (
+                                int(re.sub(r"\D", "", total_count.get_text()))
+                                if total_count else None
+                            )
+        
+        
+        # Main page articles
+        main = soup.find("main")
+        if not main:
+            logger.error("Missing <main> - otomoto not rendered")  
+        results_div = main.find("div", attrs={"data-testid": "search-results"})
+        if not results_div:
+            logger.error("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model))
+            return None, None
+        else:
+            articles = results_div.find_all("article", class_="e1srzcph1")
+        results = []
+
+        for a in articles:
+            # ---- PRICE ----
+            #text = a.get_text(" ", strip=True).lower()
+            if not a.find("h3", class_="eg88ra81"):
+                logger.error("Missing <h3> tag for price - price not collected")
+                continue
+            raw_price = a.find("h3", class_="eg88ra81").get_text(" ", strip=True).lower()
+            price = int(re.sub(r"[^\d]", "", raw_price))
+            
+
+            # ---- MADE YEAR ----
+            if not a.find("dd", attrs={"data-parameter": "year"}):
+                logger.error("Missing <dd> tag for year - year not collected")
+                continue
+            raw_year = a.find("dd", attrs={"data-parameter": "year"}).get_text(" ", strip=True).lower()
+            year = int(raw_year)
+
+            # ---- MILAGE ----
+            if not a.find("dd", attrs={"data-parameter": "mileage"}):
+                logger.error("Missing <dd> tag for mileage - mileage not collected")
+                continue    
+            raw_mileage = a.find("dd", attrs={"data-parameter": "mileage"}).get_text(" ", strip=True).lower()
+            mileage = int(re.sub(r"[^\d]", "", raw_mileage))
+
+            results.append({
+                "price": price,
+                "year": year,
+                "mileage": mileage
+            })
+
+        return total_count,results
+
+
+
+
+
   
 
 

@@ -5,7 +5,7 @@ from scrapping.sparql_wikidata import fetch_wikidata, build_dictionary
 from db_connectors.mongo_db_connector import mongo_bulk_upload,mongo_truncate_collection, connect_to_db as mongo_connect_to_db,get_all_auctions
 from db_connectors.postgressql_connector import connect_to_db as pg_connect_to_db, pg_insert_car_makes, pg_insert_car_models,pg_insert_car_auctions, get_cars_brands, get_car_brand_models,get_car_brand_model_ids
 from config.logging_config import setup_logging
-from etl.debt_auctions_processing import auction_brands_enriched_output_list, auction_brand_model_enriched, preparing_pg_auction_input_list
+from etl.debt_auctions_processing import auction_brands_enriched_output_list, auction_brand_model_enriched, preparing_pg_auction_input_list,otomoto_auctions
 
 import pandas as pd
 import os
@@ -46,14 +46,17 @@ def run_auctions_enrichment():
     """
     ENRICHING AUCTIONS AND LOADING INTO POSTGRESQL
     """
-    logger.info("Starting auction enrichment function at "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    logger.info("Starting auction enrichment function")
     #getting saved auctions in the mongo
-    auctions_dict = get_all_auctions()
-    car_all_brands = get_cars_brands()
-    output_brand_list = auction_brands_enriched_output_list(auctions_dict,car_all_brands)
-    output_list = preparing_pg_auction_input_list (output_brand_list)
-    pg_insert_car_auctions(output_list)
-    logger.info("Completing auction enrichment function at "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    #auctions_dict = get_all_auctions()
+    #car_all_brands = get_cars_brands()
+    #utput_brand_list = auction_brands_enriched_output_list(auctions_dict,car_all_brands)
+    #utput_list = preparing_pg_auction_input_list (output_brand_list)
+    #pg_insert_car_auctions(output_list)
+    #getting otomoto auctions statistics for debt auctions
+    otomoto_auctions()
+    logger.info("Completing auction enrichment function")
+
 
 
 

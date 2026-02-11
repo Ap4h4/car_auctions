@@ -135,6 +135,27 @@ def pg_insert_car_models(cars):
     logger.info("Inserted all car models into posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     return None
 
+def pg_insert_otomoto_auctions_stats(auction_list):
+    debt_auction_id = auction_list[0]
+    connection = connect_to_db()
+    cursor = connection.cursor()
+    total_count = auction_list[4]
+    mean_price = auction_list[5]
+    mean_mileage = auction_list[6]
+    try:
+        sql = """SELECT upsert_otomoto_auction_stats(%s::integer,
+        %s::integer,
+        %s::integer,
+        %s::integer)"""
+        cursor.execute(sql,(debt_auction_id,total_count,mean_price,mean_mileage))
+    except Exception as e:
+        connection.rollback()
+        logger.error(f"Unexpected error inserting otomoto stats for auction " + debt_auction_id + " into database: {e}", exc_info=True)
+    else:
+        connection.commit()
+        connection.close()
+        logger.info("Inserted auctions_otomoto_stat for auction_id " + str(debt_auction_id))
+
 """"
 RETRIEVE FUNCTIONS
 """
@@ -190,3 +211,38 @@ def get_car_brand_model_ids(brand,model):
     car_ids = cur.fetchall()
     logger.info("IDs " + str(car_ids) + " for brand " + str(brand) + " and model " + str(model) + " from posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     return car_ids
+
+def get_debt_car_auctions_details():
+
+    """
+    Retrieves all debt auctions' details: auction_id, brand_name, model_name, made_year to scrap relevant cars from OtoMoto
+    
+    :return: list of tuples containing make_id and model_id
+    """
+
+    
+    con = connect_to_db()
+    cur = con.cursor()
+    logger.info("Getting all debt auctions saved in PostgreSQL db to scrap relevant otomoto auctions")
+    #all auctions
+    sql = """
+        SELECT auction_id, cm.make_name, cm.make_id , cm2.model_name , cm2.model_id , a.made_year 
+        from auctions a
+        inner join car_makes cm ON  cm.make_id = a.car_make_id 
+        inner join car_models cm2 on cm2.model_id  = a.car_model_id and cm2.make_id = cm.make_id;
+        """
+    #skipping auctions already processed as of Today - for Dev tests
+    sql_as_of_today = """
+    SELECT a.auction_id, cm.make_name, cm.make_id , cm2.model_name , cm2.model_id , a.made_year 
+        from auctions a
+        inner join car_makes cm ON  cm.make_id = a.car_make_id 
+        inner join car_models cm2 on cm2.model_id  = a.car_model_id and cm2.make_id = cm.make_id
+        left join auctions_otomoto_stat aos  on aos.auction_id  = a.auction_id and date(aos.update_ts) = current_date
+        where aos.auction_id is null
+        """
+    cur.execute(sql_as_of_today)
+    auctions = cur.fetchall()
+    logger.info("Fetched all " + str(len(auctions)) + " debt auctions saved in PostgreSQL db to scrap relevant otomoto auctions")
+    return auctions
+
+
