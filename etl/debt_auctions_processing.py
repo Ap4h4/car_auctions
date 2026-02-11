@@ -1,6 +1,7 @@
 import re 
 import pandas as pd
-from db_connectors.postgressql_connector import get_car_brand_models,get_car_brand_model_ids
+from db_connectors.postgressql_connector import get_car_brand_models,get_car_brand_model_ids,get_debt_car_auctions_details,pg_insert_otomoto_auctions_stats
+from scrapping.scrapping import get_otomoto_raw_cars_auctions
 import logging
 import datetime
 
@@ -140,3 +141,31 @@ def preparing_pg_auction_input_list(auctions_list):
         output_list.append(i[:6] + [brand_id,model_id,vin_number,plate_number,made_year])
     logger.info("Prepared list of " + str(len(output_list)) + " auctions to be inserted into pg at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     return output_list
+
+def otomoto_auctions():
+    saved_debt_auctions = get_debt_car_auctions_details()
+    for i in saved_debt_auctions:
+        otomoto_auctions = []
+        auction_id = i[0]
+        make = i[1]
+        make_id = i[2]
+        model = i[3]
+        model_id = i[4]
+        m_year = i[5]
+        auctions_list = []
+        #scrapping
+        total_count, auctions_list =  get_otomoto_raw_cars_auctions(make, model, m_year)
+        if total_count in [None,0]:
+            continue
+        #calculating mean price and mileage
+        mean_price = 0
+        mean_mileage = 0
+        df = pd.DataFrame(auctions_list)
+        mean_price = df['price'].mean().__round__(0)
+        mean_mileage = df['mileage'].mean().__round__(0)
+        otomoto_auctions=[auction_id,make_id,model_id,m_year,total_count,mean_price,mean_mileage]
+        pg_insert_otomoto_auctions_stats(otomoto_auctions)
+        
+    logger.info("Finished processing otomoto auctions for all " + str(len(saved_debt_auctions)) + " debt_auctions")
+
+

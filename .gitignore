@@ -12,3 +12,5 @@ __pycache__/
 
 #dev
 dev_main.py
+dev_sql/
+tips_for_dev.txt
