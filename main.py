@@ -48,13 +48,14 @@ def run_auctions_enrichment():
     """
     logger.info("Starting auction enrichment function")
     #getting saved auctions in the mongo
-    #auctions_dict = get_all_auctions()
-    #car_all_brands = get_cars_brands()
-    #utput_brand_list = auction_brands_enriched_output_list(auctions_dict,car_all_brands)
-    #utput_list = preparing_pg_auction_input_list (output_brand_list)
-    #pg_insert_car_auctions(output_list)
+    auctions_dict = get_all_auctions()
+    car_all_brands = get_cars_brands()
+    output_brand_list = auction_brands_enriched_output_list(auctions_dict,car_all_brands)
+    output_list = preparing_pg_auction_input_list (output_brand_list)
+    pg_insert_car_auctions(output_list)
+    
     #getting otomoto auctions statistics for debt auctions
-    otomoto_auctions()
+    #otomoto_auctions() --time consuming, probably better to move into other step
     logger.info("Completing auction enrichment function")
 
 

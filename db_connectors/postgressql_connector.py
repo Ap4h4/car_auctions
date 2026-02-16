@@ -34,6 +34,21 @@ def connect_to_db():
 """
 INSERT FUNCTIONS
 """
+def pg_archiving_outdated_car_auctions():
+    connection = connect_to_db()
+    logger.info("Connected to posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    archiving_sql = """
+                with cte as (select MAX(DATE(upload_ts)) max_dt from auctions)
+                UPDATE auctions a set VERSION_KEY = 2
+                where version_key = 1 and DATE(upload_ts) < (select max_dt from cte)
+    """
+    cursor = connection.cursor()
+    cursor.execute(archiving_sql)
+    connection.commit()
+    logger.info("Archived outdated auctions into posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    cursor.close()
+    connection.close()
+
 def pg_insert_car_auctions(auctions):
     connection = connect_to_db()
     logger.info("Connected to posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -91,10 +106,16 @@ def pg_insert_car_auctions(auctions):
     logger.info("Inserted all car auctions into posrtgress db at "+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     cursor.close()
     connection.close()
-    #print(failed_auctions)
+    #archiving outdated auctions
+    pg_archiving_outdated_car_auctions()
+    
     if failed_auctions:
         logger.warning(f"{len(failed_auctions)} auctions failed to insert.")
     return failed_auctions
+
+
+    
+
 
 def pg_insert_car_makes(cars):
     connection = connect_to_db()
