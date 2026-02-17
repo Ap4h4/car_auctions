@@ -29,7 +29,6 @@ def run_otomoto_scrapping():
     #full dump once per month, otherwise from postgres
     if datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") == 1:
         makes = get_raw_cars_brands()
-    else:
         con = pg_connect_to_db()
         cur = con.cursor()
         sql = "SELECT make_name FROM car_makes"
@@ -37,10 +36,13 @@ def run_otomoto_scrapping():
         makes = cur.fetchall()    
     
   #scrapping models for given list of brands
-    for make in makes:
-        dict_models = get_raw_cars_brand_models(make[0])
-        pg_insert_car_models(dict_models)
-    logger.info("Completing otomoto scrapping function at "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        for make in makes:
+            dict_models = get_raw_cars_brand_models(make[0])
+            pg_insert_car_models(dict_models)
+        logger.info("Completing scrapping all OtoMoto cars makes and models")
+    else:
+        logger.info("OtoMoto scrapper not called as it is not the first day of the month but "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
 
 def run_auctions_enrichment():
     """
@@ -50,8 +52,8 @@ def run_auctions_enrichment():
     #getting saved auctions in the mongo
     #auctions_dict = get_all_auctions()
     #car_all_brands = get_cars_brands()
-    #utput_brand_list = auction_brands_enriched_output_list(auctions_dict,car_all_brands)
-    #utput_list = preparing_pg_auction_input_list (output_brand_list)
+    #output_brand_list = auction_brands_enriched_output_list(auctions_dict,car_all_brands)
+    #output_list = preparing_pg_auction_input_list (output_brand_list)
     #pg_insert_car_auctions(output_list)
     #getting otomoto auctions statistics for debt auctions
     otomoto_auctions()

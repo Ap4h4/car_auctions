@@ -260,8 +260,10 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
         if not page:
             logger.error("Missing page - otomoto not rendered")
         # cookies – MUSI być
-        page.get_by_role("button", name="Akceptuj").click()
-        
+        try: 
+            page.get_by_role("button", name="Akceptuj").click()
+        except Exception as e:
+            logger.error("Missing cookies button - otomoto not rendered")
         html = page.content()
         if not html:
             logger.error("Missing HTML - otomoto not rendered")
@@ -287,7 +289,10 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
             logger.error("Missing <main> - otomoto not rendered")  
         results_div = main.find("div", attrs={"data-testid": "search-results"})
         if not results_div:
-            logger.error("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model))
+            if year == None:
+                logger.error("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model))
+            else:
+                logger.error("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model) + " made between " + str(start_year) + " and " + str(end_year) + " years")
             return None, None
         else:
             articles = results_div.find_all("article", class_="e1srzcph1")

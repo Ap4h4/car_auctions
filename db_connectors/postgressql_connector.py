@@ -217,7 +217,7 @@ def get_debt_car_auctions_details():
     """
     Retrieves all debt auctions' details: auction_id, brand_name, model_name, made_year to scrap relevant cars from OtoMoto
     
-    :return: list of tuples containing make_id and model_id
+    :return: list of tuples and string with count
     """
 
     
@@ -238,7 +238,7 @@ def get_debt_car_auctions_details():
         inner join car_makes cm ON  cm.make_id = a.car_make_id 
         inner join car_models cm2 on cm2.model_id  = a.car_model_id and cm2.make_id = cm.make_id
         left join auctions_otomoto_stat aos  on aos.auction_id  = a.auction_id and date(aos.update_ts) = current_date
-        where aos.auction_id is null
+        where a.version_key = 1 and aos.auction_id  is null
         """
     cur.execute(sql_as_of_today)
     auctions = cur.fetchall()
