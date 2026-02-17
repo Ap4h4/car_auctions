@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Wyszukiwarka aut</h2>
+
+<form method="POST">
+  <input name="model_name" placeholder="Model">
+  <input name="make_name" placeholder="Marka">
+  <input name="made_year" placeholder="Rocznik">
+  
+  <input name="auction_city" placeholder="auction_city">
+  <input name="auction_date" placeholder="Data">
+
+  <button type="submit">Szukaj</button>
+</form>
+
+<hr>
+
+{% for car in results %}
+<div>
+  <h4>Auction title:</h4>
+  <a href= "{{ car.auction_url }}" target="_blank">{{ car.auction_title }}</a> <br>
+  <b>{{ car.make_name }} {{ car.model_name }}</b><br>
+  starting auction price: <b>{{ car.starting_price }}</b>  target auction price: <b>{{ car.target_price }}</b><br>
+  rok: {{ car.made_year }}<br>
+  city: {{ car.auction_city }}<br>
+  data: {{ car.auction_date }}<br>
+  plate number: {{ car.plate_number }}<br>
+  vin number: {{ car.vin_number }}
+</div>
+<hr>
+{% else %}
+<p>Brak wyników</p>
+{% endfor %}
+
+{% endblock %}
