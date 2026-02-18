@@ -150,11 +150,11 @@ def pg_insert_otomoto_auctions_stats(auction_list):
         cursor.execute(sql,(debt_auction_id,total_count,mean_price,mean_mileage))
     except Exception as e:
         connection.rollback()
-        logger.error(f"Unexpected error inserting otomoto stats for auction " + debt_auction_id + " into database: {e}", exc_info=True)
+        logger.error(f"Unexpected error inserting otomoto stats for auction_row_id " + str(debt_auction_id) + " into database: {e}", exc_info=True)
     else:
         connection.commit()
         connection.close()
-        logger.info("Inserted auctions_otomoto_stat for auction_id " + str(debt_auction_id))
+        logger.info("Inserted auctions_otomoto_stat for auction_row_id " + str(debt_auction_id))
 
 """"
 RETRIEVE FUNCTIONS
@@ -226,21 +226,14 @@ def get_debt_car_auctions_details():
     logger.info("Getting all debt auctions saved in PostgreSQL db to scrap relevant otomoto auctions")
     #all auctions
     sql = """
-        SELECT auction_id, cm.make_name, cm.make_id , cm2.model_name , cm2.model_id , a.made_year 
-        from auctions a
-        inner join car_makes cm ON  cm.make_id = a.car_make_id 
-        inner join car_models cm2 on cm2.model_id  = a.car_model_id and cm2.make_id = cm.make_id;
-        """
-    #skipping auctions already processed as of Today - for Dev tests
-    sql_as_of_today = """
-    SELECT a.auction_id, cm.make_name, cm.make_id , cm2.model_name , cm2.model_id , a.made_year 
+        SELECT  auction_id, cm.make_name, cm.make_id , cm2.model_name , cm2.model_id , a.made_year, a.auction_row_id
         from auctions a
         inner join car_makes cm ON  cm.make_id = a.car_make_id 
         inner join car_models cm2 on cm2.model_id  = a.car_model_id and cm2.make_id = cm.make_id
-        left join auctions_otomoto_stat aos  on aos.auction_id  = a.auction_id and date(aos.update_ts) = current_date
-        where a.version_key = 1 and aos.auction_id  is null
+        left join auctions_otomoto_stat aos on aos.auction_row_id = a.auction_row_id  and date(aos.update_ts) = current_date
+        where a.version_key = 1  and aos.auction_row_id  is null;
         """
-    cur.execute(sql_as_of_today)
+    cur.execute(sql)
     auctions = cur.fetchall()
     logger.info("Fetched all " + str(len(auctions)) + " debt auctions saved in PostgreSQL db to scrap relevant otomoto auctions")
     return auctions

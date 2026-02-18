@@ -115,6 +115,24 @@ def debt_auctions_scrapper():
 Scrapping functions for OtoMoto car models dictionary
 """
 
+def accepting_otomoto_cookies(page):
+    buttons = [
+        "Akceptuj",
+        "Zezwól tylko na niezbędne"
+    ]
+
+    try:
+        for label in buttons:
+            btn = page.get_by_role("button", name=label)
+            if btn.count():
+                btn.click()
+                break
+        else:
+                raise RuntimeError("Cookie button not found")
+
+    except Exception as e:
+        logger.error(f"Missing cookies button - otomoto not rendered: {e}")
+
 def normalizing_brand_name(brand_name):
     #removing numbers and special characters
     normalized_brand_name = re.sub(r'\s*\(\d+\)$', '', brand_name)
@@ -146,8 +164,7 @@ def scrapping_brands():
 
         page.goto("https://www.otomoto.pl/osobowe", timeout=60_000)
 
-        # accepting cookies
-        page.get_by_role("button", name="Akceptuj").click()
+        accepting_otomoto_cookies(page)
 
         # hitting input
         page.get_by_role("textbox", name="Marka pojazdu").click()
@@ -186,8 +203,7 @@ def scrapping_models(brand):
 
         page.goto("https://www.otomoto.pl/osobowe/"+brand+"", timeout=60_000)
 
-        # cookies – MUSI być
-        page.get_by_role("button", name="Akceptuj").click()
+        accepting_otomoto_cookies(page)
 
         # klikamy INPUT, nie combobox
         page.get_by_role("textbox", name="Model pojazdu").click()
@@ -260,10 +276,7 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
         if not page:
             logger.error("Missing page - otomoto not rendered")
         # cookies – MUSI być
-        try: 
-            page.get_by_role("button", name="Akceptuj").click()
-        except Exception as e:
-            logger.error("Missing cookies button - otomoto not rendered")
+        accepting_otomoto_cookies(page)
         html = page.content()
         if not html:
             logger.error("Missing HTML - otomoto not rendered")

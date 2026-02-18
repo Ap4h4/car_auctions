@@ -154,6 +154,7 @@ def otomoto_auctions():
         model = i[3]
         model_id = i[4]
         m_year = i[5]
+        auction_row_id = i[6]
         auctions_list = []
         #scrapping
         total_count, auctions_list =  get_otomoto_raw_cars_auctions(make, model, m_year)
@@ -165,7 +166,7 @@ def otomoto_auctions():
         df = pd.DataFrame(auctions_list)
         mean_price = df['price'].mean().__round__(0)
         mean_mileage = df['mileage'].mean().__round__(0)
-        otomoto_auctions=[auction_id,make_id,model_id,m_year,total_count,mean_price,mean_mileage]
+        otomoto_auctions=[auction_row_id,make_id,model_id,m_year,total_count,mean_price,mean_mileage]
         pg_insert_otomoto_auctions_stats(otomoto_auctions)
         logger.info("Processed otomoto stats for " + index + "/" + auctions_count)
         
