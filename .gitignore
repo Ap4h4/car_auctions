@@ -14,3 +14,7 @@ __pycache__/
 dev_main.py
 dev_sql/
 tips_for_dev.txt
+
+
+#db creates - will be added afterwards with all functions etc
+auctions.sql
