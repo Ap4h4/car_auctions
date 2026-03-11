@@ -5,8 +5,9 @@ main_bp = Blueprint("main", __name__)
 
 @main_bp.route("/", methods=["GET", "POST"])
 def search():
+    filters = {}
     results = []
-
+    
     if request.method == "POST":
         filters = {
             "model_name": request.form.get("model_name"),

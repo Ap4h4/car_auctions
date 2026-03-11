@@ -230,7 +230,7 @@ def get_debt_car_auctions_details():
         from auctions a
         inner join car_makes cm ON  cm.make_id = a.car_make_id 
         inner join car_models cm2 on cm2.model_id  = a.car_model_id and cm2.make_id = cm.make_id
-        left join auctions_otomoto_stat aos on aos.auction_row_id = a.auction_row_id  and date(aos.update_ts) = current_date
+        left join auctions_otomoto_stat aos on aos.auction_row_id = a.auction_row_id 
         where a.version_key = 1  and aos.auction_row_id  is null;
         """
     cur.execute(sql)
