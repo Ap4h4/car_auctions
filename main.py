@@ -1,6 +1,6 @@
 import logging
 import datetime
-from scrapping.scrapping import debt_auctions_scrapper, get_raw_cars_brand_models,get_raw_cars_brands
+from scrapping.scrapping import debt_auctions_scrapper_v2, get_raw_cars_brand_models,get_raw_cars_brands
 from scrapping.sparql_wikidata import fetch_wikidata, build_dictionary
 from db_connectors.mongo_db_connector import mongo_bulk_upload,mongo_truncate_collection, connect_to_db as mongo_connect_to_db,get_all_auctions
 from db_connectors.postgressql_connector import connect_to_db as pg_connect_to_db, pg_insert_car_makes, pg_insert_car_models,pg_insert_car_auctions, get_cars_brands, get_car_brand_models,get_car_brand_model_ids
@@ -16,7 +16,7 @@ def run_auctions_scrapping():
     #SCRAPPING AUCTIONS AND LOADING INTO MONGO
     """
     logger.info("Calling auction scrapping function at "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    df = debt_auctions_scrapper()
+    df = debt_auctions_scrapper_v2()
     mongo_truncate_collection("auctions")
     mongo_bulk_upload("auctions", df)
     logger.info("Completing auction scrapping function at "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

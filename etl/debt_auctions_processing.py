@@ -12,6 +12,7 @@ def normalize(text):
 
 def auction_made_year_enriched(auction_title: str) -> int | None:
     """
+    DEMISED as of March 2026 - debt auction page upgraded with dynamic JS
     Docstring for auction_year_enriched
     
     :param auction_title: string
@@ -38,6 +39,9 @@ def auction_made_year_enriched(auction_title: str) -> int | None:
     return int(year)
     
 def auction_vin_enriched(auction_title: str) -> str | None:
+    """
+    DEMISED as of March 2026 - debt auction page upgraded with dynamic JS
+    """
     auction_title = normalize(auction_title)
     VIN_PATTERN = re.compile(
     r"""
@@ -55,6 +59,7 @@ def auction_vin_enriched(auction_title: str) -> str | None:
     return vin_number
 
 def auction_plates_enriched(auction_title: str) -> str | None:
+    
     auction_title = normalize(auction_title)
     PLATE_PATTERN = re.compile(
     r"""
@@ -112,10 +117,13 @@ def auction_brands_enriched_output_list(auctions_dict,brands):
         auction_starting_price = auction[4]
         auction_target_price = auction[5]
         auction_url = auction[6]
+        auction_vin = auction[7]
+        auction_plate = auction[8]
+        auction_made_year = auction[9]
         brand = auction_brand_model_enriched(auction_title, brands)
         
 
-        output_list.append([auction_title, auction_date, auction_city, auction_starting_price, auction_target_price, auction_url, brand])
+        output_list.append([auction_title, auction_date, auction_city, auction_starting_price, auction_target_price, auction_url,auction_vin,auction_plate,auction_made_year, brand])
     return output_list
 
 def preparing_pg_auction_input_list(auctions_list):
@@ -129,9 +137,15 @@ def preparing_pg_auction_input_list(auctions_list):
         models = get_car_brand_models(brand)
         model = auction_brand_model_enriched(i[0],models)
         id_list = get_car_brand_model_ids(brand,model)
-        vin_number = auction_vin_enriched(auction_title)
-        plate_number = auction_plates_enriched(auction_title)
-        made_year = auction_made_year_enriched(auction_title)
+        #vin_number = auction_vin_enriched(auction_title)
+        vin_number = i[6]
+        #plate_number = auction_plates_enriched(auction_title)
+        plate_number = i[7]
+        #made_year = auction_made_year_enriched(auction_title)
+        if i[8] is not None:
+            made_year = int(i[8])
+        else:
+            made_year = None
         if len(id_list) > 0:    
             brand_id = id_list[0][0]
             model_id = id_list[0][1]

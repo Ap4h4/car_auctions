@@ -58,6 +58,9 @@ def get_all_auctions():
     "starting_price",
     "target_price",
     "auction_link",
+    "vin",
+    "plate_number",
+    "made_year",
     "item_ts"
     ]
     for document in details:
