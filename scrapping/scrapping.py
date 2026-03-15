@@ -18,7 +18,153 @@ logger = logging.getLogger(__name__)
 """
     Function for scrapping data from https://licytacje.komornik.pl
 """
+
+BASE_URL = "https://licytacje.komornik.pl"
+LIST_URL = f"{BASE_URL}/wyszukiwarka/obwieszczenia-o-licytacji?mainCategory=MOVABLE&subCategory=CARS"
+
+def debt_auctions_parse_detail_page(soup):
+    text = soup.get_text(" ", strip=True)
+    
+    title = soup.find('h4')
+    auction_item = title.get_text(strip=True) if title else None
+
+    plate_match = re.search(r'nr rej\.?:\s*([A-Z0-9]+)', text)
+    vin_match = re.search(r'VIN:\s*([A-Z0-9]+)', text)
+    made_year_match = re.search(r'rok produkcji:\s*(\d{4})', text)
+    plate_number = plate_match.group(1) if plate_match else None
+    vin_number = vin_match.group(1) if vin_match else None
+    made_year = made_year_match.group(1) if made_year_match else None
+
+    price_match = re.search(r'Cena wywołania\s*([\d\s,]+)\s*zł', text)
+    sum_match = re.search(r'Suma oszacowania\s*([\d\s,]+)\s*zł', text)
+    starting_price_raw = price_match.group(1).strip() if price_match else None
+    if starting_price_raw:
+        starting_price_cleaned = starting_price_raw.replace('\xa0', '').replace(',', '.')
+        starting_price = float(starting_price_cleaned)
+    else:
+        starting_price = None
+
+    target_price_raw = sum_match.group(1).strip() if sum_match else None
+    if target_price_raw:
+        target_price_cleaned = target_price_raw.replace('\xa0', '').replace(',', '.')
+        target_price = float(target_price_cleaned)
+    else:
+        target_price = None
+
+    data_match = re.search(r'w dniu\s+(\d{2}\.\d{2}\.\d{4})', text)
+    auction_date = data_match.group(1) if data_match else None
+
+    province_div = soup.find('div', class_='text-capitalize')
+    auction_region = province_div.get_text(strip=True) if province_div else None
+
+    addr_match = re.search(r'pod adresem\s+[^,]+,\s+\d{2}-\d{3}\s+(\w+)', text)
+    auction_city = addr_match.group(1) if addr_match else None
+
+    return {
+        'auction_date': auction_date,
+        'auction_city': auction_city,
+        'auction_region': auction_region,
+        'auction_item': auction_item,
+        'starting_price': starting_price,
+        'target_price': target_price,
+        'made_year': made_year,
+        'vin': vin_number,
+        'plate_number': plate_number,
+    }
+
+
+def debt_auctions_get_all_links(page):
+    """Przechodzi przez wszystkie strony i zbiera linki do aukcji."""
+    all_links = []
+    offset = 0
+
+    while True:
+        url = LIST_URL if offset == 0 else f"{LIST_URL}&offset={offset}"
+        print(f"Pobieram listę: {url}")
+
+        page.goto(url)
+        page.wait_for_selector("a.notice")
+
+        soup = BeautifulSoup(page.content(), 'html.parser')
+        notices = soup.find_all('a', class_='notice')
+
+        if not notices:
+            break
+
+        links = [BASE_URL + n.get('href') for n in notices]
+        all_links.extend(links)
+        print(f"  Znaleziono {len(links)} ogłoszeń (łącznie: {len(all_links)})")
+
+        # Sprawdź czy jest następna strona - jeśli mniej niż 20 wyników, to ostatnia strona
+        if len(notices) < 20:
+            break
+
+        offset += 20
+
+    return all_links
+
+
+def debt_auctions_scrapper_v2():
+    """
+    New version of scrapping debt auctions page
+    """
+    logger.info("Starting scrapping debt_auctions page")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False)
+        page = browser.new_page()
+
+        all_links = debt_auctions_get_all_links(page)
+        logger.info(f"{len(all_links)} debt auctions found. Starting iteration over them...")
+
+        rows = []
+        for i, link in enumerate(all_links, 1):
+            print(f"[{i}/{len(all_links)}] {link}")
+            try:
+                page.goto(link)
+                page.wait_for_selector("h4", timeout=10000)
+
+                detail_soup = BeautifulSoup(page.content(), 'html.parser')
+                data = debt_auctions_parse_detail_page(detail_soup)
+
+                rows.append({
+                    'auction_date':     data['auction_date'],
+                    'auction_city':     data['auction_city'],
+                    'auction_region':   data['auction_region'],
+                    'auction_item':     data['auction_item'],
+                    'starting_price':   data['starting_price'],
+                    'target_price':     data['target_price'],
+                    'auction_link':     link,
+                    'vin':              data['vin'],
+                    'made_year':        data['made_year'],
+                    'plate_number':     data['plate_number'],
+                    'item_ts':          datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                })
+                logger.info(f"  -> {data['auction_item']} | {data['auction_date']} | {data['starting_price']} zł")
+
+            except Exception as e:
+                logger.error(f"Error while scrapping {link}: {e}")
+                rows.append({
+                    'auction_date': None, 'auction_city': None, 'auction_region': None,
+                    'auction_item': None, 'starting_price': None, 'target_price': None,
+                    'auction_link': link, 'vin': None, 'made_year': None,
+                    'plate_number': None, 'item_ts': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                })
+
+        browser.close()
+
+    df = pd.DataFrame(rows, columns=[
+        'auction_date', 'auction_city', 'auction_region', 'auction_item',
+        'starting_price', 'target_price', 'auction_link', 'vin',
+        'made_year', 'plate_number', 'item_ts'
+    ])
+    logger.info("Scrapped all debt auctions")
+    return df
+
+
 def debt_auctions_scrapper():
+    """
+    Legacy function for static page which was demised as of March 2026.
+    """
     
     #getting full site
     url = 'https://licytacje.komornik.pl' #24 to numer kategorii
