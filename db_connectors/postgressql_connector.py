@@ -44,7 +44,7 @@ def pg_insert_car_auctions(auctions):
     batch_size = 100
     for idx, auction in enumerate(auctions, start=1):
         auction_title = auction[0]
-        auction_date = dt.strptime(auction[1], "%d.%m.%Y").date()
+        auction_date =  dt.strptime(auction[1], "%d.%m.%Y").date() if auction[1] else None
         auction_city = auction[2]
         starting_price = auction[3]
         target_price = auction[4]
