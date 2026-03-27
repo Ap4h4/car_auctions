@@ -83,7 +83,7 @@ def debt_auctions_get_all_links(page):
         print(f"Pobieram listę: {url}")
 
         page.goto(url)
-        page.wait_for_selector("a.notice")
+        #page.wait_for_selector("a.notice")
 
         soup = BeautifulSoup(page.content(), 'html.parser')
         notices = soup.find_all('a', class_='notice')
@@ -110,7 +110,7 @@ def debt_auctions_scrapper_v2():
     """
     logger.info("Starting scrapping debt_auctions page")
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
 
         all_links = debt_auctions_get_all_links(page)
@@ -305,7 +305,7 @@ def cleaning_brands(brands):
 
 def scrapping_brands():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
 
         page.goto("https://www.otomoto.pl/osobowe", timeout=60_000)
@@ -344,7 +344,7 @@ def cleaning_models(models):
 
 def scrapping_models(brand):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
 
         page.goto("https://www.otomoto.pl/osobowe/"+brand+"", timeout=60_000)
@@ -416,7 +416,7 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
     
     with sync_playwright() as p:
         
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto(url, wait_until="networkidle")
         if not page:
