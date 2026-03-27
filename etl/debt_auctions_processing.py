@@ -8,6 +8,8 @@ import datetime
 logger = logging.getLogger(__name__)
 
 def normalize(text):
+    if text is None:
+        return None
     return re.sub(r'\s+', ' ', text.lower())
 
 def auction_made_year_enriched(auction_title: str) -> int | None:
@@ -131,7 +133,7 @@ def preparing_pg_auction_input_list(auctions_list):
     output_list =[]
     for i in auctions_list:
         auction_title = i[0]
-        brand = i[6] #brand
+        brand = i[9] #brand
         if brand is None:
             continue
         models = get_car_brand_models(brand)
