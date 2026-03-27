@@ -103,24 +103,21 @@ def debt_auctions_get_all_links(page):
 
     return all_links
 
-def playwright_browser_init():
-    browser = p.chromium.launch(headless=True)
-    context = browser.new_context(
-            viewport={"width": 1920, "height": 1080},
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            java_script_enabled=True,
-            locale="pl-PL",
-            timezone_id="Europe/Warsaw",
-            )
-    page = context.new_page()
-    return browser,page
 def debt_auctions_scrapper_v2():
     """
     New version of scrapping debt auctions page
     """
     logger.info("Starting scrapping debt_auctions page")
     with sync_playwright() as p:
-        browser,page = playwright_browser_init()
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(
+            viewport={"width": 1920, "height": 1080},
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            java_script_enabled=True,
+            locale="pl-PL",
+            timezone_id="Europe/Warsaw",
+            )
+        page = context.new_page()
         all_links = debt_auctions_get_all_links(page)
         logger.info(f"{len(all_links)} debt auctions found. Starting iteration over them...")
 
@@ -313,7 +310,15 @@ def cleaning_brands(brands):
 
 def scrapping_brands():
     with sync_playwright() as p:
-        browser,page = playwright_browser_init()
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(
+            viewport={"width": 1920, "height": 1080},
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            java_script_enabled=True,
+            locale="pl-PL",
+            timezone_id="Europe/Warsaw",
+            )
+        page = context.new_page()
 
         page.goto("https://www.otomoto.pl/osobowe", timeout=60_000)
 
@@ -351,7 +356,15 @@ def cleaning_models(models):
 
 def scrapping_models(brand):
     with sync_playwright() as p:
-        browser,page = playwright_browser_init()
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(
+            viewport={"width": 1920, "height": 1080},
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            java_script_enabled=True,
+            locale="pl-PL",
+            timezone_id="Europe/Warsaw",
+            )
+        page = context.new_page()
 
         page.goto("https://www.otomoto.pl/osobowe/"+brand+"", timeout=60_000)
 
@@ -422,7 +435,15 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
     
     with sync_playwright() as p:
         
-        browser,page = playwright_browser_init()
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(
+            viewport={"width": 1920, "height": 1080},
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            java_script_enabled=True,
+            locale="pl-PL",
+            timezone_id="Europe/Warsaw",
+            )
+        page = context.new_page()
         page.goto(url, wait_until="networkidle")
         if not page:
             logger.error("Missing page - otomoto not rendered")
