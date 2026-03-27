@@ -466,8 +466,6 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
                                 int(re.sub(r"\D", "", total_count.get_text()))
                                 if total_count else None
                             )
-        
-        print(total_count_p)
         # Main page articles
         main = soup.find("main")
         if not main:
@@ -491,7 +489,6 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
                 continue
             raw_price = a.find("h3", class_="eg88ra81").get_text(" ", strip=True).lower()
             price = int(re.sub(r"[^\d]", "", raw_price))
-            print(price)
             
 
             # ---- MADE YEAR ----
@@ -514,8 +511,8 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
                 "mileage": mileage
             })
 
-        return soup
-        #return total_count,results
+        #return soup
+        return total_count,results
 
 
 
