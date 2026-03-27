@@ -457,17 +457,17 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
 
         soup = BeautifulSoup(html, "lxml")
         #Total count of ads
-        total_count_p= soup.find("p", class_="efp1nuf2")
+        total_count = None
+        total_count_p= soup.find("p", class_="elumsi70")
         if not total_count_p:
             logger.error("Missing <p> tag for total count - total count not collected")
         else:
-            total_count = total_count_p.find("b") if total_count_p else None
             total_count = (
                                 int(re.sub(r"\D", "", total_count.get_text()))
                                 if total_count else None
                             )
         
-        
+        print(total_count_p)
         # Main page articles
         main = soup.find("main")
         if not main:
@@ -491,6 +491,7 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
                 continue
             raw_price = a.find("h3", class_="eg88ra81").get_text(" ", strip=True).lower()
             price = int(re.sub(r"[^\d]", "", raw_price))
+            print(price)
             
 
             # ---- MADE YEAR ----
@@ -513,7 +514,8 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
                 "mileage": mileage
             })
 
-        return total_count,results
+        return soup
+        #return total_count,results
 
 
 
