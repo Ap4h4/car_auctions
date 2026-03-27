@@ -4,8 +4,8 @@ from datetime import datetime
 
 class Auction(BaseModel):
     auction_title: str
-    auction_date: datetime
-    auction_city: str
+    auction_date: Optional[datetime] = None
+    auction_city: Optional[str] = None
     auction_starting_price: float
     auction_target_price: float
     auction_url: str
