@@ -47,8 +47,7 @@ def get_all_auctions():
     """
     db=connect_to_db()
     collection = db["auctions"]
-    #details = collection.find({},{"auction_item": 1, "_id": 1})
-    details = collection.find({})
+    details = collection.find({"auction_item": {"$exists": True, "$ne": None}})
     auctions_dict = {}
     fields = [
     "auction_item",
