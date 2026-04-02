@@ -12,23 +12,23 @@
     <div class="form-grid">
       <div class="form-group">
         <label for="make_name">Make</label>
-        <input id="make_name" name="make_name" placeholder="np. BMW, Audi, Toyota..." value="{{ request.form.get('make_name', '') }}">
+        <input id="make_name" name="make_name" placeholder="ie. BMW, Audi, Toyota..." value="{{ request.form.get('make_name', '') }}">
       </div>
       <div class="form-group">
         <label for="model_name">Model</label>
-        <input id="model_name" name="model_name" placeholder="np. Golf, Passat, 320i..." value="{{ request.form.get('model_name', '') }}">
+        <input id="model_name" name="model_name" placeholder="ie. Golf, Passat, 320i..." value="{{ request.form.get('model_name', '') }}">
       </div>
       <div class="form-group">
         <label for="made_year">Made Year</label>
-        <input id="made_year" name="made_year" placeholder="np. 2018" value="{{ request.form.get('made_year', '') }}">
+        <input id="made_year" name="made_year" placeholder="ie. 2018" value="{{ request.form.get('made_year', '') }}">
       </div>
       <div class="form-group">
         <label for="auction_city">Auction City</label>
-        <input id="auction_city" name="auction_city" placeholder="np. Warszawa, Krakow..." value="{{ request.form.get('auction_city', '') }}">
+        <input id="auction_city" name="auction_city" placeholder="ie. Warszawa, Krakow..." value="{{ request.form.get('auction_city', '') }}">
       </div>
       <div class="form-group form-group--full">
         <label for="auction_date">Auction Date</label>
-        <input id="auction_date" name="auction_date" placeholder="np. 2025-06-01" value="{{ request.form.get('auction_date', '') }}">
+        <input id="auction_date" name="auction_date" placeholder="ie. 2025-06-01" value="{{ request.form.get('auction_date', '') }}">
       </div>
     </div>
     <button type="submit" class="btn-search">Search</button>
@@ -47,23 +47,18 @@
     <article class="car-card">
       <div class="car-card__badge">{{ car.made_year }}</div>
       <div class="car-card__body">
-        <h3 class="car-card__name">
-          <a href="{{ car.auction_url }}" target="_blank" class="car-link">
-            {{ car.make_name }} {{ car.model_name }}
-            <span class="link-arrow">&#x2197;</span>
-          </a>
-        </h3>
-        <p class="car-card__title">{{ car.auction_title }}</p>
+        
+        <p class="car-card__title"><a href="{{ car.auction_url }}" target="_blank" class="car-link">{{ car.auction_title }}</a></p>
 
         <div class="car-card__prices">
           <div class="price price--start">
             <span class="price__label">Starting price</span>
-            <span class="price__value">{{ car.starting_price }}</span>
+            <span class="price__value">{{ "{:,.0f}".format(car.auction_starting_price) }} PLN</span>
           </div>
           <div class="price-divider">&rarr;</div>
           <div class="price price--target">
             <span class="price__label">Target price</span>
-            <span class="price__value">{{ car.target_price }}</span>
+            <span class="price__value">{{ "{:,.0f}".format(car.auction_target_price) }} PLN</span>
           </div>
         </div>
 

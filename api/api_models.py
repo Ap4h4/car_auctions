@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_serializer
 from typing import Optional
 from datetime import datetime   
 
@@ -17,7 +17,10 @@ class Auction(BaseModel):
     otomoto_auctions_count: Optional[int] = None
     otomoto_avg_price: Optional[float] = None
     otomoto_avg_mileage: Optional[int] = None
-
+    
+    @field_serializer('auction_date')
+    def serialize_date(self, value: Optional[datetime]) -> Optional[str]:
+        return value.strftime('%d.%m.%Y') if value else None
 """
 a.auction_title,
                 a.auction_date,
