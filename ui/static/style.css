@@ -1,10 +1,450 @@
+/* ─────────────────────────────────────────
+   AutoSearch — Industrial Luxury Theme
+   ───────────────────────────────────────── */
+
+:root {
+  --bg:         #0e0e0e;
+  --bg-card:    #161616;
+  --bg-input:   #1c1c1c;
+  --border:     #2e2e2e;
+  --border-hot: #c8a84b;
+  --text:       #e8e4dc;
+  --text-muted: #7a7570;
+  --accent:     #c8a84b;
+  --accent-dim: #8a7030;
+  --danger:     #d45c3a;
+  --radius:     6px;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: Arial;
-  max-width: 700px;
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ─────────────────────────── */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: rgba(14,14,14,0.95);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1000px;
   margin: auto;
-  padding: 30px;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  font-size: 22px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.logo-text strong {
+  color: var(--accent);
+}
+
+.header-tagline {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── MAIN ───────────────────────────── */
+
+.main-content {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 32px;
+}
+
+/* ── SEARCH SECTION ─────────────────── */
+
+.search-section {
+  margin-bottom: 64px;
+}
+
+.search-header {
+  margin-bottom: 36px;
+}
+
+.search-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 84px);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.search-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.search-subtitle {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* ── FORM ───────────────────────────── */
+
+.search-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
 input {
-  display: block;
-  margin: 5px 0;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
 }
+
+input::placeholder {
+  color: #444;
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.12);
+}
+
+.btn-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #0e0e0e;
+  border: none;
+  padding: 13px 32px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-search:hover {
+  background: #dbbe5f;
+  transform: translateY(-1px);
+}
+
+.btn-search:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 18px;
+}
+
+/* ── RESULTS ────────────────────────── */
+
+.results-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.results-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: 0.06em;
+}
+
+.results-count {
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.results-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── CAR CARD ───────────────────────── */
+
+.car-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+}
+
+.car-card:hover {
+  border-color: var(--accent-dim);
+  transform: translateX(3px);
+}
+
+.car-card__badge {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  background: var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  padding: 16px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.car-card:hover .car-card__badge {
+  background: var(--accent-dim);
+  color: var(--text);
+}
+
+.car-card__body {
+  padding: 20px 24px;
+  flex: 1;
+}
+
+.car-card__name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.car-link {
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+
+.car-link:hover {
+  color: var(--accent);
+}
+
+.link-arrow {
+  font-size: 14px;
+  color: var(--accent-dim);
+  transition: transform 0.2s;
+}
+
+.car-link:hover .link-arrow {
+  transform: translate(2px, -2px);
+}
+
+.car-card__title {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.car-card__prices {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.price__label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.price__value {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+
+.price--start .price__value {
+  color: var(--text);
+}
+
+.price--target .price__value {
+  color: var(--accent);
+}
+
+.price-divider {
+  color: var(--text-muted);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.car-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.meta-icon {
+  font-size: 12px;
+  filter: grayscale(1) opacity(0.6);
+}
+
+.vin {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+/* ── EMPTY STATE ────────────────────── */
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-muted);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.empty-text {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+/* ── FOOTER ─────────────────────────── */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* ── RESPONSIVE ─────────────────────── */
+
+@media (max-width: 600px) {
+  .header-tagline { display: none; }
+  .main-content { padding: 32px 20px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group--full { grid-column: 1; }
+  .car-card__prices { flex-direction: column; gap: 10px; }
+  .price-divider { display: none; }
+}
+
+/* ── ANIMATIONS ─────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.search-section { animation: fadeUp 0.5s ease both; }
+.car-card { animation: fadeUp 0.4s ease both; }
+.car-card:nth-child(2) { animation-delay: 0.05s; }
+.car-card:nth-child(3) { animation-delay: 0.10s; }
+.car-card:nth-child(4) { animation-delay: 0.15s; }
+.car-card:nth-child(5) { animation-delay: 0.20s; }
