@@ -6,10 +6,13 @@ import os
 import pandas as pd 
 import json
 import datetime
+import random
+import time
 import logging
 from playwright.sync_api import sync_playwright
 import unicodedata
 from db_connectors.postgressql_connector import connect_to_db as pg_connect_to_db, pg_insert_car_makes, pg_insert_car_models
+
 
 
 logger = logging.getLogger(__name__)
@@ -80,10 +83,16 @@ def debt_auctions_get_all_links(page):
 
     while True:
         url = LIST_URL if offset == 0 else f"{LIST_URL}&offset={offset}"
-        print(f"Pobieram listę: {url}")
 
-        page.goto(url)
-        #page.wait_for_selector("a.notice")
+        for attempt in range(3):
+            try:
+                page.goto(url, timeout=60000, wait_until="domcontentloaded")
+                break
+            except Exception as e:
+                if attempt == 2:
+                    logger.error(f"Failed to navigate to {url}: {e}")
+                    return all_links
+                time.sleep(5 * (attempt + 1))
 
         soup = BeautifulSoup(page.content(), 'html.parser')
         notices = soup.find_all('a', class_='notice')
@@ -100,8 +109,22 @@ def debt_auctions_get_all_links(page):
             break
 
         offset += 20
+        time.sleep(random.uniform(1.0, 2.5))
 
     return all_links
+
+def goto_with_retry(page, url, retries=3):
+    for attempt in range(retries):
+        try:
+            page.goto(url, timeout=60000, wait_until="domcontentloaded")
+            return True
+        except Exception as e:
+            if attempt == retries - 1:
+                logger.error(f"Error while scrapping {url}: {e}")
+                return False
+            wait = 5 * (attempt + 1)
+            logger.warning(f"Retry {attempt+1}/{retries} dla {url}, czekam {wait}s")
+            time.sleep(wait)
 
 def debt_auctions_scrapper_v2():
     """
@@ -123,10 +146,15 @@ def debt_auctions_scrapper_v2():
 
         rows = []
         for i, link in enumerate(all_links, 1):
-            print(f"[{i}/{len(all_links)}] {link}")
+            logger.info(f"[{i}/{len(all_links)}] {link}")
+            success = goto_with_retry(page, link)
+            if not success:
+                logger.error(f"Error while scrapping {link}")
+                rows.append(_empty_row(link))
+                continue
             try:
                 page.goto(link)
-                page.wait_for_selector("h4", timeout=10000)
+                page.wait_for_selector("h4", timeout=15000)
 
                 detail_soup = BeautifulSoup(page.content(), 'html.parser')
                 data = debt_auctions_parse_detail_page(detail_soup)
@@ -148,13 +176,16 @@ def debt_auctions_scrapper_v2():
 
             except Exception as e:
                 logger.error(f"Error while scrapping {link}: {e}")
+                rows.append(_empty_row(link))
+                """
                 rows.append({
                     'auction_date': None, 'auction_city': None, 'auction_region': None,
                     'auction_item': None, 'starting_price': None, 'target_price': None,
                     'auction_link': link, 'vin': None, 'made_year': None,
                     'plate_number': None, 'item_ts': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 })
-
+                """
+            time.sleep(random.uniform(1.0, 3.0))  # opóźnienie między stronami
         browser.close()
 
     df = pd.DataFrame(rows, columns=[
@@ -165,6 +196,13 @@ def debt_auctions_scrapper_v2():
     logger.info("Scrapped all debt auctions")
     return df
 
+def _empty_row(link):
+    return {
+        'auction_date': None, 'auction_city': None, 'auction_region': None,
+        'auction_item': None, 'starting_price': None, 'target_price': None,
+        'auction_link': link, 'vin': None, 'made_year': None,
+        'plate_number': None, 'item_ts': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
 
 def debt_auctions_scrapper():
     """
