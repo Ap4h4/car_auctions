@@ -282,7 +282,7 @@ def accepting_otomoto_cookies(page):
                 raise RuntimeError("Cookie button not found")
 
     except Exception as e:
-        logger.error(f"Missing cookies button - otomoto not rendered: {e}")
+        logger.warning(f"Missing cookies button - otomoto not rendered: {e}")
 
 def normalizing_brand_name(brand_name):
     #removing numbers and special characters
@@ -434,7 +434,7 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
         url = "https://www.otomoto.pl/osobowe/"+brand+"/"+model+"/od-"+str(year)+"?search%5Bfilter_float_year%3Ato%5D="+end_year+""
     
     with sync_playwright() as p:
-        
+        logger.info("Starting scrapping OtoMoto car auctions for "+brand+" "+model+" "+str(year or ""))
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(
             viewport={"width": 1920, "height": 1080},
@@ -473,12 +473,13 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
         results_div = main.find("div", attrs={"data-testid": "search-results"})
         if not results_div:
             if year == None:
-                logger.error("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model))
+                logger.info("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model))
             else:
-                logger.error("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model) + " made between " + str(start_year) + " and " + str(end_year) + " years")
+                logger.info("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model) + " made between " + str(start_year) + " and " + str(end_year) + " years")
             return None, None
         else:
-            articles = results_div.find_all("article", class_="e1srzcph1")
+            filtered_results_div = results_div.find("div", class_=lambda c: c and "efpbvue0" not in c)
+            articles = filtered_results_div.find_all("article", class_="e1srzcph1")
         results = []
 
         for a in articles:
