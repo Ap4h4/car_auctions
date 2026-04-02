@@ -1,37 +1,99 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block content %}
 
-<h2>Wyszukiwarka aut</h2>
+<section class="search-section">
+  <div class="search-header">
+    <h1 class="search-title">BailliffAuction<br><em>Search</em></h1>
+    <p class="search-subtitle">Search auctions for your ideal car</p>
+  </div>
 
-<form method="POST">
-  <input name="model_name" placeholder="Model">
-  <input name="make_name" placeholder="Marka">
-  <input name="made_year" placeholder="Rocznik">
-  
-  <input name="auction_city" placeholder="auction_city">
-  <input name="auction_date" placeholder="Data">
+  <form method="POST" class="search-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="make_name">Make</label>
+        <input id="make_name" name="make_name" placeholder="np. BMW, Audi, Toyota..." value="{{ request.form.get('make_name', '') }}">
+      </div>
+      <div class="form-group">
+        <label for="model_name">Model</label>
+        <input id="model_name" name="model_name" placeholder="np. Golf, Passat, 320i..." value="{{ request.form.get('model_name', '') }}">
+      </div>
+      <div class="form-group">
+        <label for="made_year">Made Year</label>
+        <input id="made_year" name="made_year" placeholder="np. 2018" value="{{ request.form.get('made_year', '') }}">
+      </div>
+      <div class="form-group">
+        <label for="auction_city">Auction City</label>
+        <input id="auction_city" name="auction_city" placeholder="np. Warszawa, Krakow..." value="{{ request.form.get('auction_city', '') }}">
+      </div>
+      <div class="form-group form-group--full">
+        <label for="auction_date">Auction Date</label>
+        <input id="auction_date" name="auction_date" placeholder="np. 2025-06-01" value="{{ request.form.get('auction_date', '') }}">
+      </div>
+    </div>
+    <button type="submit" class="btn-search">Search</button>
+  </form>
+</section>
 
-  <button type="submit">Szukaj</button>
-</form>
+<section class="results-section">
+  {% if results %}
+  <div class="results-header">
+    <h2 class="results-title">Results</h2>
+    <span class="results-count">{{ results | length }} auctions</span>
+  </div>
 
-<hr>
+  <div class="results-grid">
+    {% for car in results %}
+    <article class="car-card">
+      <div class="car-card__badge">{{ car.made_year }}</div>
+      <div class="car-card__body">
+        <h3 class="car-card__name">
+          <a href="{{ car.auction_url }}" target="_blank" class="car-link">
+            {{ car.make_name }} {{ car.model_name }}
+            <span class="link-arrow">&#x2197;</span>
+          </a>
+        </h3>
+        <p class="car-card__title">{{ car.auction_title }}</p>
 
-{% for car in results %}
-<div>
-  <h4>Auction title:</h4>
-  <a href= "{{ car.auction_url }}" target="_blank">{{ car.auction_title }}</a> <br>
-  <b>{{ car.make_name }} {{ car.model_name }}</b><br>
-  starting auction price: <b>{{ car.starting_price }}</b>  target auction price: <b>{{ car.target_price }}</b><br>
-  rok: {{ car.made_year }}<br>
-  city: {{ car.auction_city }}<br>
-  data: {{ car.auction_date }}<br>
-  plate number: {{ car.plate_number }}<br>
-  vin number: {{ car.vin_number }}
-</div>
-<hr>
-{% else %}
-<p>Brak wyników</p>
-{% endfor %}
+        <div class="car-card__prices">
+          <div class="price price--start">
+            <span class="price__label">Starting price</span>
+            <span class="price__value">{{ car.starting_price }}</span>
+          </div>
+          <div class="price-divider">&rarr;</div>
+          <div class="price price--target">
+            <span class="price__label">Target price</span>
+            <span class="price__value">{{ car.target_price }}</span>
+          </div>
+        </div>
+
+        <div class="car-card__meta">
+          <div class="meta-item">
+            <span>&#128205;</span>
+            <span>{{ car.auction_city }}</span>
+          </div>
+          <div class="meta-item">
+            <span>&#128197;</span>
+            <span>{{ car.auction_date }}</span>
+          </div>
+          <div class="meta-item">
+            <span>{{ car.plate_number }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="vin">VIN: {{ car.vin_number }}</span>
+          </div>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">&#9711;</div>
+    <p class="empty-text">No actions for given criteria&mdash; try changing search parameters</p>
+  </div>
+  {% endif %}
+</section>
 
 {% endblock %}
