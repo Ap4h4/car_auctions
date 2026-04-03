@@ -45,12 +45,16 @@
   <div class="results-grid">
     {% for car in results %}
     <article class="car-card">
-      <div class="car-card__badge">{{ car.made_year }}</div>
+      <div class="car-card__badge">{{ car.car_model }}</div>
       <div class="car-card__body">
         
         <p class="car-card__title"><a href="{{ car.auction_url }}" target="_blank" class="car-link">{{ car.auction_title }}</a></p>
 
         <div class="car-card__prices">
+          <div class="price made_year">
+            <span class="price__label">Made year: </span>
+            <span class="price__value">{{car.car_made_year if car.car_made_year else "—" }}</span>
+          </div>
           <div class="price price--start">
             <span class="price__label">Starting price</span>
             <span class="price__value">{{ "{:,.0f}".format(car.auction_starting_price) if car.auction_starting_price else "—" }} PLN</span>
@@ -59,6 +63,10 @@
           <div class="price price--target">
             <span class="price__label">Target price</span>
             <span class="price__value">{{ "{:,.0f}".format(car.auction_target_price) if car.auction_target_price else "—" }} PLN</span>
+          </div>
+          <div class="price price--avg">
+            <span class="price__label">Average OtoMoto price:</span>
+            <span class="price__value">{{ "{:,.0f}".format(car.otomoto_avg_price) if car.otomoto_avg_price else "—" }} PLN</span>
           </div>
         </div>
 
@@ -72,10 +80,13 @@
             <span>{{ car.auction_date }}</span>
           </div>
           <div class="meta-item">
-            <span>{{ car.plate_number }}</span>
+            <span>Plate: {{ car.plate_number }}</span>
           </div>
           <div class="meta-item">
             <span class="vin">VIN: {{ car.vin_number }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="vin">Active OtoMoto auctions: {{ car.otomoto_auctions_count }}</span>
           </div>
         </div>
       </div>

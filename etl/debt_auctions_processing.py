@@ -159,6 +159,8 @@ def preparing_pg_auction_input_list(auctions_list):
     return output_list
 
 def otomoto_auctions():
+    print("Function started")
+    logger.info("Starting gathering otomoto auctions statistics for debt auctions")
     saved_debt_auctions = get_debt_car_auctions_details()
     auctions_count = str(len(saved_debt_auctions))
     for idx, i in enumerate(saved_debt_auctions):
@@ -176,15 +178,22 @@ def otomoto_auctions():
         total_count, auctions_list =  get_otomoto_raw_cars_auctions(make, model, m_year)
         if total_count in [None,0]:
             continue
+        #debug:
+
+        print("total_count:", total_count)
+        print("auctions_list sample:", auctions_list[:2] if auctions_list else "EMPTY")  # ← dodaj to        
         #calculating mean price and mileage
         mean_price = 0
         mean_mileage = 0
         df = pd.DataFrame(auctions_list)
+        print("df columns:", df.columns.tolist())  # ← i to
+        print("df shape:", df.shape)
         mean_price = df['price'].mean().__round__(0)
         mean_mileage = df['mileage'].mean().__round__(0)
         otomoto_auctions=[auction_row_id,make_id,model_id,m_year,total_count,mean_price,mean_mileage]
         pg_insert_otomoto_auctions_stats(otomoto_auctions)
         logger.info("Processed otomoto stats for " + index + "/" + auctions_count)
+        print("Processed otomoto stats for " + index + "/" + auctions_count)
         
     logger.info("Finished processing otomoto auctions for all " + auctions_count + " debt_auctions")
 

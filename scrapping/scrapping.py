@@ -462,6 +462,7 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
     :return: total_count of all ads and list of tuples for each add: price, mileage, year
 
     """
+    logger.info("Scrapping raw otomoto auctions for "+brand+" "+model+" "+str(year or ""))
     if year == None:
         url = "https://www.otomoto.pl/osobowe/"+brand+"/"+model+""
     else:
@@ -485,12 +486,15 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
         page.goto(url, wait_until="networkidle")
         if not page:
             logger.error("Missing page - otomoto not rendered")
-        # cookies – MUSI być
+        try:
+            page.wait_for_selector("article[data-id]", timeout=10000)
+        except:
+            logger.warning("Timeout waiting for articles")
         accepting_otomoto_cookies(page)
         html = page.content()
         if not html:
             logger.error("Missing HTML - otomoto not rendered")
-        page.wait_for_timeout(3000)
+        #page.wait_for_timeout(3000)
         browser.close()
 
         soup = BeautifulSoup(html, "lxml")
@@ -501,8 +505,8 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
             logger.error("Missing <p> tag for total count - total count not collected")
         else:
             total_count = (
-                                int(re.sub(r"\D", "", total_count.get_text()))
-                                if total_count else None
+                                int(re.sub(r"\D", "", total_count_p.get_text()))
+                                if total_count_p else None
                             )
         # Main page articles
         main = soup.find("main")
@@ -516,14 +520,16 @@ def get_otomoto_raw_cars_auctions(brand, model, year):
                 logger.info("No auctions on otomoto for brand and model: " + str(brand) + " " + str(model) + " made between " + str(start_year) + " and " + str(end_year) + " years")
             return None, None
         else:
-            filtered_results_div = results_div.find("div", class_=lambda c: c and "efpbvue0" not in c)
-            articles = filtered_results_div.find_all("article", class_="e1srzcph1")
+            #filtered_results_div = results_div.find("div", class_=lambda c: c and "efpbvue0" not in c)
+            #articles = filtered_results_div.find_all("article", attrs={"data-id": True})
+            articles = results_div.find_all("article", attrs={"data-id": True})
         results = []
 
         for a in articles:
             # ---- PRICE ----
             #text = a.get_text(" ", strip=True).lower()
             if not a.find("h3", class_="eg88ra81"):
+            
                 logger.error("Missing <h3> tag for price - price not collected")
                 continue
             raw_price = a.find("h3", class_="eg88ra81").get_text(" ", strip=True).lower()
