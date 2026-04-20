@@ -96,6 +96,12 @@ def pg_insert_car_auctions(auctions):
         logger.warning(f"{len(failed_auctions)} auctions failed to insert.")
     return failed_auctions
 
+def pg_clean_up_auctions():
+    connection = connect_to_db()
+    cursor = connection.cursor()
+    cursor.execute("CALL sp_cleanup_outdated_auctions();")
+    logger.info("Updated version_key for outdated auctions")
+
 def pg_insert_car_makes(cars):
     connection = connect_to_db()
     cursor = connection.cursor()
